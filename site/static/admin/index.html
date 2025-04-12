@@ -43,6 +43,11 @@
     <h1>Administration L'atelier Boulet</h1>
     <p>Connectez-vous pour gérer le contenu du site</p>
     <button id="login-button" class="login-button">Se connecter</button>
+    <div style="margin-top: 20px;">
+      <p>Si le bouton ci-dessus ne fonctionne pas, essayez cette méthode alternative:</p>
+      <button id="login-button-alt" class="login-button" style="background-color: #28a745;">Méthode alternative</button>
+    </div>
+    <div id="debug-info" style="margin-top: 20px; padding: 10px; background-color: #f8f9fa; border-radius: 4px; max-width: 80%; text-align: left;"></div>
   </div>
   
   <div id="cms-container" class="hidden">
@@ -63,59 +68,150 @@
   </div>
   
   <script>
+    // Gestionnaire d'erreur global
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error('Erreur globale:', message, 'à', source, lineno, colno);
+      console.error('Détails de l\'erreur:', error);
+      return false;
+    };
+    
     // Personnalisation de l'éditeur avec support Flutter
     document.addEventListener('DOMContentLoaded', async function() {
+      // Fonction de débogage pour afficher les informations
+      const debugInfo = document.getElementById('debug-info');
+      function logDebug(message) {
+        console.log(message);
+        if (debugInfo) {
+          const timestamp = new Date().toLocaleTimeString();
+          debugInfo.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+        }
+      }
+      
+      logDebug('DOM chargé, initialisation de Auth0...');
+      
+      // Récupérer les boutons de connexion
+      const loginButton = document.getElementById('login-button');
+      const loginButtonAlt = document.getElementById('login-button-alt');
+      
+      if (!loginButton || !loginButtonAlt) {
+        logDebug('Erreur: Un ou plusieurs boutons de connexion non trouvés!');
+        return;
+      }
+      
+      logDebug('Boutons de connexion trouvés');
+      
       // Initialisation de Auth0
       let auth0Client = null;
       try {
+        logDebug('Tentative de création du client Auth0...');
         auth0Client = await createAuth0Client({
-          domain: 'YOUR_AUTH0_DOMAIN',
-          clientId: 'YOUR_AUTH0_CLIENT_ID',
+          domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
+          clientId: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
           authorizationParams: {
             redirect_uri: window.location.origin + '/admin/',
             audience: 'https://api.github.com/',
             scope: 'openid profile email repo'
           }
         });
+        logDebug('Client Auth0 créé avec succès');
         
         // Vérifier si l'utilisateur est redirigé après authentification
         if (window.location.search.includes("code=")) {
+          logDebug('Code de redirection détecté, traitement du callback...');
           await auth0Client.handleRedirectCallback();
           window.history.replaceState({}, document.title, window.location.pathname);
+          logDebug('Callback traité avec succès');
         }
         
         // Vérifier si l'utilisateur est authentifié
-        if (await auth0Client.isAuthenticated()) {
+        const isAuthenticated = await auth0Client.isAuthenticated();
+        logDebug('Statut d\'authentification: ' + (isAuthenticated ? 'Authentifié' : 'Non authentifié'));
+        
+        if (isAuthenticated) {
           // Afficher le CMS
+          logDebug('Utilisateur authentifié, affichage du CMS');
           document.getElementById('login-screen').classList.add('hidden');
           document.getElementById('cms-container').classList.remove('hidden');
           
           // Obtenir le token pour l'API GitHub
+          logDebug('Récupération du token GitHub...');
           const token = await auth0Client.getTokenSilently({
             audience: 'https://api.github.com/',
             scope: 'repo'
           });
+          logDebug('Token GitHub récupéré avec succès');
           
           // Stocker le token pour Flutter
           window.flutterConfiguration.token = token;
           
           // Configurer le CMS avec Auth0
           if (window.CMS) {
+            logDebug('Configuration du CMS avec Auth0');
             CMS.registerPreviewStyle("/css/style.min.css");
             
             // Ajouter le token au backend GitHub
             CMS.registerBackend('github', {
               auth_token: token
             });
+            logDebug('CMS configuré avec succès');
+          } else {
+            logDebug('Erreur: CMS non disponible');
           }
         } else {
           // Afficher l'écran de connexion
-          document.getElementById('login-button').addEventListener('click', async function() {
-            await auth0Client.loginWithRedirect();
+          logDebug('Utilisateur non authentifié, ajout des gestionnaires de connexion');
+          
+          // Méthode principale
+          loginButton.addEventListener('click', async function(e) {
+            logDebug('Bouton de connexion principal cliqué');
+            try {
+              e.preventDefault();
+              logDebug('Tentative de redirection Auth0...');
+              await auth0Client.loginWithRedirect({
+                authorizationParams: {
+                  redirect_uri: window.location.origin + '/admin/',
+                  audience: 'https://api.github.com/',
+                  scope: 'openid profile email repo'
+                }
+              });
+              logDebug('Après loginWithRedirect (cette ligne ne devrait pas s\'afficher)');
+            } catch (error) {
+              logDebug('Erreur lors de la redirection: ' + error.message);
+            }
+          });
+          
+          // Méthode alternative
+          loginButtonAlt.addEventListener('click', function(e) {
+            logDebug('Bouton de connexion alternatif cliqué');
+            e.preventDefault();
+            
+            // Redirection directe vers Auth0
+            const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
+            const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
+            const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
+            const audience = encodeURIComponent('https://api.github.com/');
+            const scope = encodeURIComponent('openid profile email repo');
+            
+            const authUrl = `https://${domain}/authorize?` +
+              `client_id=${clientId}` +
+              `&response_type=code` +
+              `&redirect_uri=${redirectUri}` +
+              `&audience=${audience}` +
+              `&scope=${scope}`;
+            
+            logDebug('Redirection vers: ' + authUrl);
+            window.location.href = authUrl;
           });
         }
       } catch (e) {
-        console.error("Erreur d'authentification:", e);
+        logDebug("Erreur d'authentification: " + e.message);
+        // Afficher un message d'erreur plus convivial
+        debugInfo.innerHTML += `
+          <div style="color: red; margin-top: 10px;">
+            <strong>Erreur d'authentification:</strong> ${e.message}<br>
+            <small>Veuillez essayer la méthode alternative ou contacter l'administrateur.</small>
+          </div>
+        `;
       }
     });
   </script>

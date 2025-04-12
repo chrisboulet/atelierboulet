@@ -98,9 +98,10 @@ jobs:
       - name: Build
         run: hugo --minify --source site
         
-      - name: Create .nojekyll file
+      - name: Create .nojekyll and CNAME files
         run: |
           touch ./site/public/.nojekyll
+          echo "atelier.cboulet.info" > ./site/public/CNAME
           echo "Contenu du répertoire public:"
           ls -la ./site/public/
       
@@ -112,4 +113,5 @@ jobs:
           clean: true
           clean-exclude: |
             .nojekyll
+            CNAME
           commit-message: "Deploy: ${{ github.event.head_commit.message }}"

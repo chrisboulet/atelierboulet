@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr-ca">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Astuces | L&#39;atelier Boulet</title>
+    <link rel="shortcut icon" href="/favicon-64x64.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.min.css">
+
+
+<link rel="stylesheet" href="/css/print.css" media="print">
+
+
+<script src="/js/portion-calculator.js"></script>
+
+
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#007bff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="L'atelier Boulet">
+<link rel="apple-touch-icon" href="/logo-atelierboulet.png">
+<script src="/js/pwa-init.js" defer></script>
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Astuces" />
+<meta name="twitter:description" content="" />
+
+
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <a href="/">
+                    
+                    <img src="/logo-atelierboulet.png" alt="L&#39;atelier Boulet" />
+                    
+                </a>
+            </div>
+            <ul class="menu">
+                <li>
+                    <a href="/">Accueil</a>
+                </li>
+                <li>
+                    <a href="/posts/">Recettes</a>
+                </li>
+                <li>
+                    <a href="/collections/">Collections</a>
+                </li>
+                <li>
+                    <a href="/astuces/">Astuces</a>
+                </li>
+                <li>
+                    <a href="/search/">Recherche</a>
+                </li>
+            </ul>
+            <div class="theme-toggle">
+                <button id="theme-toggle-button" aria-label="Changer de thème">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="theme-toggle-icon">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+<main class="main">
+    <header class="page-header">
+        <h1>Astuces</h1>
+        
+    </header>
+    
+    
+    
+    
+    
+    
+    
+    <div class="posts">
+        
+        <article class="post-entry">
+            
+            
+            <div class="entry-cover">
+                <img src="/images/cuisson-viande.jpg" alt="Viande parfaitement cuite" class="post-cover" />
+            </div>
+            
+            <header class="entry-header">
+                <h2>La cuisson parfaite des viandes</h2>
+            </header>
+            <div class="entry-content">
+                <p>Maîtriser la cuisson des viandes La cuisson de la viande est souvent source d’anxiété pour de nombreux cuisiniers amateurs. Trop cuite, elle devient sèche; pas assez, elle peut être dangereuse. Voici un guide complet pour vous aider à obtenir des résultats parfaits.
+Les principes fondamentaux 1. La température ambiante Toujours sortir la viande du réfrigérateur au moins 30 minutes avant la cuisson. Une viande à température ambiante cuit plus uniformément.
+...</p>
+            </div>
+            <footer class="entry-footer">
+                
+                <span class="post-date">12 April 2025</span>
+                
+                
+                <span class="post-tags">
+                    
+                    <a href="/tags/viande/">viande</a>
+                    
+                    <a href="/tags/cuisson/">cuisson</a>
+                    
+                    <a href="/tags/technique/">technique</a>
+                    
+                </span>
+                
+            </footer>
+            <a class="entry-link" aria-label="post link to La cuisson parfaite des viandes" href="http://localhost:1313/astuces/cuisson-parfaite-viande/"></a>
+        </article>
+        
+    </div>
+
+    
+
+</main>
+
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <span>&copy; 2025 L&#39;atelier Boulet</span>
+            <span>Propulsé par <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> et <a href="https://github.com/adityatelange/hugo-PaperMod" target="_blank" rel="noopener">PaperMod</a></span>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const currentTheme = localStorage.getItem('theme') || 'auto';
+            
+            
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            
+            
+            themeToggleButton.addEventListener('click', function() {
+                let newTheme;
+                
+                if (currentTheme === 'dark') {
+                    newTheme = 'light';
+                } else if (currentTheme === 'light') {
+                    newTheme = 'auto';
+                } else {
+                    newTheme = 'dark';
+                }
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        });
+    </script>
+</body>
+</html>

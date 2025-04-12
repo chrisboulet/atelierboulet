@@ -1,0 +1,39 @@
+{{ define "main" }}
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">{{ .Title }}</h1>
+        {{ partial "post-meta-info.html" . }}
+    </header>
+    
+    {{ if .Params.cover.image }}
+    <div class="cover">
+        <img src="{{ .Params.cover.image }}" alt="{{ .Params.cover.alt | default .Title }}" />
+        {{ if .Params.cover.caption }}
+        <div class="caption">{{ .Params.cover.caption }}</div>
+        {{ end }}
+    </div>
+    {{ end }}
+    
+    <div class="post-content">
+        {{ .Content }}
+    </div>
+    
+    {{ if .Site.Params.ShowPostNavLinks }}
+    <div class="post-nav">
+        {{ if .PrevInSection }}
+        <a class="prev-post" href="{{ .PrevInSection.Permalink }}">
+            <span>← Article précédent</span>
+            <span>{{ .PrevInSection.Title }}</span>
+        </a>
+        {{ end }}
+        
+        {{ if .NextInSection }}
+        <a class="next-post" href="{{ .NextInSection.Permalink }}">
+            <span>Article suivant →</span>
+            <span>{{ .NextInSection.Title }}</span>
+        </a>
+        {{ end }}
+    </div>
+    {{ end }}
+</article>
+{{ end }}

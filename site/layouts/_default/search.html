@@ -1,0 +1,189 @@
+{{ define "main" }}
+<main class="main">
+    <header class="page-header">
+        <h1>{{ .Title }}</h1>
+        {{ if .Description }}
+        <div class="page-description">
+            {{ .Description | markdownify }}
+        </div>
+        {{ end }}
+    </header>
+    
+    <div class="search-container">
+        <div class="search-form">
+            <input type="text" id="search-input" class="search-input" placeholder="{{ .Params.placeholder | default "Rechercher..." }}" />
+            <button id="search-button" class="search-button">Rechercher</button>
+        </div>
+        
+        <div id="search-results" class="search-results"></div>
+    </div>
+    
+    <script>
+        // Fonction pour récupérer les données de recherche
+        async function fetchSearchIndex() {
+            try {
+                const response = await fetch('/index.json');
+                return await response.json();
+            } catch (error) {
+                console.error('Erreur lors du chargement de l\'index de recherche:', error);
+                return { items: [] };
+            }
+        }
+        
+        // Fonction pour effectuer la recherche
+        async function performSearch(query) {
+            if (!query || query.length < 2) {
+                return [];
+            }
+            
+            const data = await fetchSearchIndex();
+            const results = [];
+            
+            // Convertir la requête en minuscules pour une recherche insensible à la casse
+            const searchQuery = query.toLowerCase();
+            
+            // Rechercher dans les éléments
+            for (const item of data) {
+                // Vérifier le titre
+                const titleMatch = item.title.toLowerCase().includes(searchQuery);
+                
+                // Vérifier le contenu
+                const contentMatch = item.content.toLowerCase().includes(searchQuery);
+                
+                // Vérifier les tags
+                const tagsMatch = item.tags && item.tags.some(tag => 
+                    tag.toLowerCase().includes(searchQuery)
+                );
+                
+                // Vérifier les catégories
+                const categoriesMatch = item.categories && item.categories.some(category => 
+                    category.toLowerCase().includes(searchQuery)
+                );
+                
+                // Si un match est trouvé, ajouter à la liste des résultats
+                if (titleMatch || contentMatch || tagsMatch || categoriesMatch) {
+                    // Créer un extrait du contenu autour du terme de recherche
+                    let snippet = '';
+                    if (contentMatch) {
+                        const index = item.content.toLowerCase().indexOf(searchQuery);
+                        const start = Math.max(0, index - 50);
+                        const end = Math.min(item.content.length, index + searchQuery.length + 50);
+                        snippet = item.content.substring(start, end);
+                        
+                        // Ajouter des ellipses si nécessaire
+                        if (start > 0) snippet = '...' + snippet;
+                        if (end < item.content.length) snippet = snippet + '...';
+                        
+                        // Mettre en évidence le terme de recherche
+                        const regex = new RegExp(searchQuery, 'gi');
+                        snippet = snippet.replace(regex, match => `<span class="search-highlight">${match}</span>`);
+                    } else {
+                        // Si le match n'est pas dans le contenu, utiliser le début du contenu
+                        snippet = item.content.substring(0, 100) + '...';
+                    }
+                    
+                    results.push({
+                        title: item.title,
+                        permalink: item.permalink,
+                        date: item.date,
+                        snippet: snippet,
+                        tags: item.tags,
+                        categories: item.categories
+                    });
+                }
+            }
+            
+            return results;
+        }
+        
+        // Fonction pour afficher les résultats
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p>Aucun résultat trouvé.</p>';
+                return;
+            }
+            
+            for (const result of results) {
+                const resultElement = document.createElement('div');
+                resultElement.className = 'search-result';
+                
+                // Formater la date si elle existe
+                let dateStr = '';
+                if (result.date) {
+                    const date = new Date(result.date);
+                    dateStr = date.toLocaleDateString('fr-CA', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                }
+                
+                // Créer le HTML pour le résultat
+                resultElement.innerHTML = `
+                    <h3><a href="${result.permalink}">${result.title}</a></h3>
+                    <div class="search-result-meta">
+                        ${dateStr ? `<span class="search-result-date">${dateStr}</span>` : ''}
+                        ${result.categories && result.categories.length ? 
+                            `<span class="search-result-categories">
+                                ${result.categories.map(cat => `<a href="/categories/${cat.toLowerCase()}/">${cat}</a>`).join(', ')}
+                            </span>` : ''
+                        }
+                    </div>
+                    <div class="search-result-snippet">${result.snippet}</div>
+                    ${result.tags && result.tags.length ? 
+                        `<div class="search-result-tags">
+                            Tags: ${result.tags.map(tag => `<a href="/tags/${tag.toLowerCase()}/">${tag}</a>`).join(', ')}
+                        </div>` : ''
+                    }
+                `;
+                
+                resultsContainer.appendChild(resultElement);
+            }
+        }
+        
+        // Initialiser la recherche
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+            
+            // Fonction pour exécuter la recherche
+            async function runSearch() {
+                const query = searchInput.value.trim();
+                if (query.length < 2) {
+                    document.getElementById('search-results').innerHTML = '<p>Veuillez entrer au moins 2 caractères pour la recherche.</p>';
+                    return;
+                }
+                
+                const results = await performSearch(query);
+                displayResults(results);
+                
+                // Mettre à jour l'URL avec le terme de recherche
+                const url = new URL(window.location);
+                url.searchParams.set('q', query);
+                window.history.pushState({}, '', url);
+            }
+            
+            // Événement de clic sur le bouton de recherche
+            searchButton.addEventListener('click', runSearch);
+            
+            // Événement de pression de la touche Entrée dans le champ de recherche
+            searchInput.addEventListener('keypress', event => {
+                if (event.key === 'Enter') {
+                    runSearch();
+                }
+            });
+            
+            // Vérifier s'il y a un terme de recherche dans l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const queryParam = urlParams.get('q');
+            if (queryParam) {
+                searchInput.value = queryParam;
+                runSearch();
+            }
+        });
+    </script>
+</main>
+{{ end }}

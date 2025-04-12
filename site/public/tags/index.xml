@@ -23,6 +23,13 @@
       <description></description>
     </item>
     <item>
+      <title>Cuisson</title>
+      <link>http://localhost:1313/tags/cuisson/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/cuisson/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Ingrédient-Clé</title>
       <link>http://localhost:1313/tags/ingr%C3%A9dient-cl%C3%A9/</link>
       <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
@@ -37,6 +44,13 @@
       <description></description>
     </item>
     <item>
+      <title>Technique</title>
+      <link>http://localhost:1313/tags/technique/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/technique/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Type</title>
       <link>http://localhost:1313/tags/type/</link>
       <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
@@ -48,6 +62,13 @@
       <link>http://localhost:1313/tags/veau/</link>
       <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/veau/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Viande</title>
+      <link>http://localhost:1313/tags/viande/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/viande/</guid>
       <description></description>
     </item>
     <item>

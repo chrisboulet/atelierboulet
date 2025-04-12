@@ -1,0 +1,64 @@
+{{ define "main" }}
+<main class="main">
+    {{ if .Site.Params.profileMode.enabled }}
+    <div class="profile">
+        <div class="profile_inner">
+            {{ if .Site.Params.profileMode.imageUrl }}
+            <img src="{{ .Site.Params.profileMode.imageUrl }}" alt="{{ .Site.Params.profileMode.imageTitle | default "Profile Image" }}"
+                height="{{ .Site.Params.profileMode.imageHeight | default 150 }}"
+                width="{{ .Site.Params.profileMode.imageWidth | default 150 }}" />
+            {{ end }}
+            <h1>{{ .Site.Params.profileMode.title }}</h1>
+            <span>{{ .Site.Params.profileMode.subtitle }}</span>
+            
+            {{ if .Site.Params.profileMode.buttons }}
+            <div class="buttons">
+                {{ range .Site.Params.profileMode.buttons }}
+                <a class="button" href="{{ .url }}" {{ if .newPage }} target="_blank" rel="noopener" {{ end }}>
+                    {{ .name }}
+                </a>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ else }}
+    <div class="home-info">
+        <div class="home-info-inner">
+            {{ if .Site.Params.homeInfoParams.Title }}
+            <h1>{{ .Site.Params.homeInfoParams.Title }}</h1>
+            {{ end }}
+            
+            {{ if .Site.Params.homeInfoParams.Content }}
+            <div class="home-content">{{ .Site.Params.homeInfoParams.Content | markdownify }}</div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
+    {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{ $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
+    {{ $paginator := .Paginate $pages }}
+    
+    <div class="posts">
+        {{ range $paginator.Pages }}
+        <article class="post-entry">
+            {{ $isHidden := (site.Params.cover.hidden | default site.Params.cover.hiddenInList) }}
+            {{ partial "cover.html" (dict "cxt" . "IsHome" true "isHidden" $isHidden) }}
+            <header class="entry-header">
+                <h2>{{ .Title }}</h2>
+            </header>
+            <div class="entry-content">
+                <p>{{ .Summary | plainify | htmlUnescape }}...</p>
+            </div>
+            <footer class="entry-footer">
+                {{ partial "post-meta.html" . }}
+            </footer>
+            <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+        </article>
+        {{ end }}
+    </div>
+
+    {{ partial "pagination.html" . }}
+</main>
+{{ end }}

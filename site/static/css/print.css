@@ -1,0 +1,144 @@
+/* Styles d'impression pour les recettes
+ * Ce fichier définit les styles spécifiques pour l'impression des recettes
+ */
+
+@media print {
+    /* Réinitialisation générale */
+    body {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+        background: #fff;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Masquer les éléments non nécessaires pour l'impression */
+    header, 
+    footer, 
+    nav, 
+    .sidebar, 
+    .comments-section, 
+    .share-buttons, 
+    .theme-toggle, 
+    .search-box,
+    .portion-calculator,
+    button,
+    .post-meta {
+        display: none !important;
+    }
+    
+    /* Mise en page générale */
+    .main-content,
+    .post-content,
+    article {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        float: none !important;
+    }
+    
+    /* Titre de la recette */
+    h1 {
+        font-size: 24pt;
+        margin: 0 0 0.5cm;
+        text-align: center;
+        page-break-after: avoid;
+    }
+    
+    /* Sous-titres */
+    h2, h3, h4 {
+        font-size: 14pt;
+        margin: 1cm 0 0.5cm;
+        page-break-after: avoid;
+    }
+    
+    /* Informations de la recette */
+    .recipe-info {
+        border: 1px solid #ccc;
+        padding: 0.5cm;
+        margin: 0.5cm 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .recipe-info div {
+        margin-right: 1cm;
+    }
+    
+    /* Liste d'ingrédients */
+    .ingredients {
+        margin: 0.5cm 0;
+        page-break-inside: avoid;
+    }
+    
+    .ingredients ul {
+        list-style-type: none;
+        padding-left: 0;
+        column-count: 2;
+        column-gap: 1cm;
+    }
+    
+    .ingredients li {
+        margin-bottom: 0.2cm;
+        break-inside: avoid;
+    }
+    
+    /* Instructions */
+    .preparation ol {
+        padding-left: 1cm;
+    }
+    
+    .preparation li {
+        margin-bottom: 0.3cm;
+    }
+    
+    /* Astuces */
+    .tips {
+        border-top: 1px solid #ccc;
+        margin-top: 1cm;
+        padding-top: 0.5cm;
+        font-style: italic;
+    }
+    
+    /* Images */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        page-break-inside: avoid;
+    }
+    
+    /* Sauts de page */
+    h1, h2, h3, 
+    .ingredients, 
+    .preparation {
+        page-break-after: avoid;
+    }
+    
+    /* Liens */
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+    
+    /* Pied de page avec URL */
+    @page {
+        margin: 2cm;
+        @bottom-center {
+            content: "L'atelier Boulet - atelier.cboulet.info";
+            font-size: 9pt;
+        }
+    }
+    
+    /* Ajout d'une note sur la source */
+    .post-content::after {
+        content: "Imprimé depuis L'atelier Boulet (atelier.cboulet.info)";
+        display: block;
+        text-align: center;
+        font-size: 9pt;
+        margin-top: 1cm;
+        font-style: italic;
+    }
+}

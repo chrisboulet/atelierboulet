@@ -1,0 +1,22 @@
+{{ if and (eq .Type "posts") (in .Params.categories "Recettes") }}
+  <!-- Informations structurées de la recette -->
+  <div class="recipe-info" data-portions="{{ .Params.portions }}">
+    <div class="recipe-time">
+      <strong>⏱️ Temps:</strong>
+      {{ with .Params.tempsPreparation }}<div>Préparation: {{ . }} min</div>{{ end }}
+      {{ with .Params.tempsCuisson }}<div>Cuisson: {{ . }} min</div>{{ end }}
+      {{ with .Params.tempsTotal }}<div>Total: {{ . }} min</div>{{ end }}
+    </div>
+    
+    <div class="recipe-details">
+      {{ with .Params.portions }}<div>👥 Portions: {{ . }}</div>{{ end }}
+      {{ with .Params.difficulties }}<div>🔥 Difficulté: {{ index . 0 }}</div>{{ end }}
+      {{ with .Params.cout }}<div>💰 Coût: {{ . }}</div>{{ end }}
+    </div>
+  </div>
+{{ end }}
+
+<!-- Boutons de partage -->
+{{ if .IsPage }}
+  {{ partial "share-buttons.html" . }}
+{{ end }}

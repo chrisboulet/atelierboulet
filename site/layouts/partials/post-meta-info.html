@@ -1,0 +1,52 @@
+{{ $params := .Params }}
+
+<div class="post-meta-info">
+    {{ if .Date }}
+    <span class="post-date">
+        <span class="post-meta-item">
+            {{ partial "svg.html" (dict "name" "calendar" "class" "post-meta-icon") }}
+            <span class="post-meta-label">{{ .Site.Params.publishDateTitle | default "Publié le" }}:</span>
+            <time datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">{{ .Date.Format "2 January 2006" }}</time>
+        </span>
+    </span>
+    {{ end }}
+
+    {{ if $params.categories }}
+    <span class="post-categories">
+        <span class="post-meta-item">
+            {{ partial "svg.html" (dict "name" "category" "class" "post-meta-icon") }}
+            <span class="post-meta-label">{{ .Site.Params.categoriesTitle | default "Catégories" }}:</span>
+            {{ range $index, $category := $params.categories }}
+                {{- if gt $index 0 }}, {{ end -}}
+                <a href="{{ "categories/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a>
+            {{ end }}
+        </span>
+    </span>
+    {{ end }}
+
+    {{ if $params.tags }}
+    <span class="post-tags">
+        <span class="post-meta-item">
+            {{ partial "svg.html" (dict "name" "tag" "class" "post-meta-icon") }}
+            <span class="post-meta-label">{{ .Site.Params.tagsTitle | default "Tags" }}:</span>
+            {{ range $index, $tag := $params.tags }}
+                {{- if gt $index 0 }}, {{ end -}}
+                <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a>
+            {{ end }}
+        </span>
+    </span>
+    {{ end }}
+
+    {{ if and (.Site.Params.ShowReadingTime) (.Params.ShowReadingTime | default true) }}
+    <span class="post-reading-time">
+        <span class="post-meta-item">
+            {{ partial "svg.html" (dict "name" "clock" "class" "post-meta-icon") }}
+            <span class="post-meta-label">{{ .Site.Params.readingTimeTitle | default "Temps de lecture" }}:</span>
+            {{ i18n "readingTime" .ReadingTime }}
+        </span>
+    </span>
+    {{ end }}
+</div>
+
+<!-- Inclure les informations de recette et boutons de partage -->
+{{ partial "post-share.html" . }}

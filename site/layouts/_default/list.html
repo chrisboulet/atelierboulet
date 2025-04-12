@@ -1,0 +1,54 @@
+{{ define "main" }}
+<main class="main">
+    <header class="page-header">
+        <h1>{{ .Title }}</h1>
+        {{ if .Description }}
+        <div class="page-description">
+            {{ .Description | markdownify }}
+        </div>
+        {{ end }}
+    </header>
+    
+    {{ $pages := .Pages }}
+    {{ if .IsHome }}
+        {{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{ end }}
+    
+    {{ $paginator := cond (or .IsHome (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term")) (.Paginate $pages) false }}
+    {{ $pageList := cond (or .IsHome (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term")) $paginator.Pages $pages }}
+    
+    <div class="posts">
+        {{ range $pageList }}
+        <article class="post-entry">
+            {{ $isHidden := (site.Params.cover.hidden | default site.Params.cover.hiddenInList) }}
+            {{ if and .Params.cover.image (not $isHidden) }}
+            <div class="entry-cover">
+                <img src="{{ .Params.cover.image }}" alt="{{ .Params.cover.alt | default .Title }}" class="post-cover" />
+            </div>
+            {{ end }}
+            <header class="entry-header">
+                <h2>{{ .Title }}</h2>
+            </header>
+            <div class="entry-content">
+                <p>{{ .Summary | plainify | htmlUnescape }}...</p>
+            </div>
+            <footer class="entry-footer">
+                {{ if .Date }}
+                <span class="post-date">{{ .Date.Format "2 January 2006" }}</span>
+                {{ end }}
+                {{ if .Params.tags }}
+                <span class="post-tags">
+                    {{ range .Params.tags }}
+                    <a href="{{ "tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+                    {{ end }}
+                </span>
+                {{ end }}
+            </footer>
+            <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+        </article>
+        {{ end }}
+    </div>
+
+    {{ partial "pagination.html" . }}
+</main>
+{{ end }}

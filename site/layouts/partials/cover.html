@@ -1,0 +1,19 @@
+{{ $cxt := .cxt }}
+{{ $isHome := .IsHome }}
+{{ $isHidden := .isHidden }}
+
+{{ if and (not $isHidden) $cxt.Params.cover.image }}
+<div class="cover">
+    {{ if $isHome }}
+    <a href="{{ $cxt.Permalink }}" aria-label="{{ $cxt.Title | plainify }}">
+    {{ end }}
+        <img src="{{ $cxt.Params.cover.image }}" alt="{{ $cxt.Params.cover.alt | default $cxt.Title }}" class="post-cover" />
+    {{ if $isHome }}
+    </a>
+    {{ end }}
+    
+    {{ if $cxt.Params.cover.caption }}
+    <div class="caption">{{ $cxt.Params.cover.caption | markdownify }}</div>
+    {{ end }}
+</div>
+{{ end }}

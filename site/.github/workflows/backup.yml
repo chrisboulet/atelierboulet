@@ -1,0 +1,42 @@
+name: Backup site content
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Chaque dimanche à minuit
+  workflow_dispatch:  # Permet de déclencher manuellement
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+        
+      - name: Create backup
+        run: |
+          zip -r backup-${{ steps.date.outputs.date }}.zip site/content
+          
+      - name: Upload backup as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: site-backup-${{ steps.date.outputs.date }}
+          path: backup-${{ steps.date.outputs.date }}.zip
+          retention-days: 90
+          
+      - name: Create release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: backup-${{ steps.date.outputs.date }}.zip
+          name: Backup ${{ steps.date.outputs.date }}
+          tag_name: backup-${{ steps.date.outputs.date }}
+          body: |
+            Sauvegarde automatique du contenu du site au ${{ steps.date.outputs.date }}.
+            
+            Cette sauvegarde contient tous les fichiers du dossier `content`.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

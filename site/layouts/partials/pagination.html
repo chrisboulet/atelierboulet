@@ -1,0 +1,67 @@
+{{ if and .Paginator (gt .Paginator.TotalPages 1) }}
+<div class="pagination">
+    {{ if .Paginator.HasPrev }}
+    <a href="{{ .Paginator.Prev.URL }}" class="page-link prev" aria-label="Page précédente">
+        <span>«</span>
+    </a>
+    {{ end }}
+    
+    {{ $paginator := .Paginator }}
+    {{ $adjacent_links := 2 }}
+    {{ $max_links := (add (mul $adjacent_links 2) 1) }}
+    {{ $lower_limit := (add $adjacent_links 1) }}
+    {{ $upper_limit := (sub $paginator.TotalPages $adjacent_links) }}
+    
+    {{ if gt $paginator.TotalPages $max_links }}
+        {{ if le $paginator.PageNumber $lower_limit }}
+            {{ range $paginator.Pagers }}
+                {{ if le .PageNumber $max_links }}
+                    <a href="{{ .URL }}" class="page-link{{ if eq . $paginator }} active{{ end }}">
+                        {{ .PageNumber }}
+                    </a>
+                {{ end }}
+            {{ end }}
+            <span class="page-link dots">...</span>
+            <a href="{{ (index $paginator.Pagers (sub $paginator.TotalPages 1)).URL }}" class="page-link">
+                {{ $paginator.TotalPages }}
+            </a>
+        {{ else if ge $paginator.PageNumber $upper_limit }}
+            <a href="{{ (index $paginator.Pagers 0).URL }}" class="page-link">1</a>
+            <span class="page-link dots">...</span>
+            {{ range $paginator.Pagers }}
+                {{ if gt .PageNumber (sub $paginator.TotalPages $max_links) }}
+                    <a href="{{ .URL }}" class="page-link{{ if eq . $paginator }} active{{ end }}">
+                        {{ .PageNumber }}
+                    </a>
+                {{ end }}
+            {{ end }}
+        {{ else }}
+            <a href="{{ (index $paginator.Pagers 0).URL }}" class="page-link">1</a>
+            <span class="page-link dots">...</span>
+            {{ range $paginator.Pagers }}
+                {{ if and (ge .PageNumber (sub $paginator.PageNumber $adjacent_links)) (le .PageNumber (add $paginator.PageNumber $adjacent_links)) }}
+                    <a href="{{ .URL }}" class="page-link{{ if eq . $paginator }} active{{ end }}">
+                        {{ .PageNumber }}
+                    </a>
+                {{ end }}
+            {{ end }}
+            <span class="page-link dots">...</span>
+            <a href="{{ (index $paginator.Pagers (sub $paginator.TotalPages 1)).URL }}" class="page-link">
+                {{ $paginator.TotalPages }}
+            </a>
+        {{ end }}
+    {{ else }}
+        {{ range $paginator.Pagers }}
+            <a href="{{ .URL }}" class="page-link{{ if eq . $paginator }} active{{ end }}">
+                {{ .PageNumber }}
+            </a>
+        {{ end }}
+    {{ end }}
+    
+    {{ if .Paginator.HasNext }}
+    <a href="{{ .Paginator.Next.URL }}" class="page-link next" aria-label="Page suivante">
+        <span>»</span>
+    </a>
+    {{ end }}
+</div>
+{{ end }}

@@ -3,13 +3,61 @@ languageCode = "fr-ca"
 title = "L'atelier Boulet"
 theme = "PaperMod"
 
+# Sections principales
+mainSections = ["posts", "astuces"]
+
+# Ignorer certains avertissements
+ignoreLogs = ['warning-goldmark-raw-html']
+
+# Configuration du rendu Markdown
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # Permet le HTML brut dans le contenu Markdown
+
+# Configuration des sorties pour activer la recherche
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  
+# Configuration des taxonomies
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  type = "types"
+  season = "seasons"
+  difficulty = "difficulties"
+  diet = "diets"
+  duration = "durations"
+
 [params]
   homeInfoParams = { Title = "Bienvenue à L'atelier Boulet", Content = "Recettes, techno, BBQ, création... tout se passe ici." }
   ShowReadingTime = true
   ShowPostNavLinks = true
   ShowCodeCopyButtons = true
+  ShowShareButtons = true
   logo = "logo-atelierboulet.png"
   favicon = "favicon-64x64.png"
+  
+  # Thème sombre/clair
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  
+  # Configuration de la recherche
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 100
+    threshold = 0.1
+    minMatchCharLength = 2
+    keys = ["title", "permalink", "summary", "content", "tags"]
+  
+  # SEO et partage
+  [params.schema]
+    type = "Recipe"
+  
+  [params.opengraph]
+    enable = true
 [params.profileMode]
   enabled = true
   title = "Bienvenue à L'atelier Boulet"
@@ -31,3 +79,21 @@ theme = "PaperMod"
     name = "Recettes"
     url = "/posts/"
     weight = 2
+    
+  [[menu.main]]
+    identifier = "collections"
+    name = "Collections"
+    url = "/collections/"
+    weight = 3
+    
+  [[menu.main]]
+    identifier = "astuces"
+    name = "Astuces"
+    url = "/astuces/"
+    weight = 4
+    
+  [[menu.main]]
+    identifier = "recherche"
+    name = "Recherche"
+    url = "/search/"
+    weight = 5

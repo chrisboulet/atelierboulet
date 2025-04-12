@@ -1,12 +1,30 @@
 ---
 title: "Nom de la recette"
-date: 2025-04-12
+date: {{ .Date }}
 tags: ["type", "méthode", "ingrédient-clé"]
 categories: ["Recettes"]
+# Nouvelles taxonomies
+types: ["plat principal"] # entrée, plat principal, dessert, apéritif, etc.
+seasons: ["toutes saisons"] # printemps, été, automne, hiver, toutes saisons
+difficulties: ["facile"] # facile, moyen, difficile
+diets: ["standard"] # végétarien, végétalien, sans gluten, etc.
+durations: ["moyen"] # rapide, moyen, long
+
+# Informations structurées pour la recette
+tempsPreparation: 15 # en minutes
+tempsCuisson: 30 # en minutes
+tempsTotal: 45 # en minutes
+portions: 4 # nombre de portions
+cout: "moyen" # économique, moyen, élevé
+
 cover:
   image: "/images/nom-image.jpg"  # Image de présentation suggérée
   alt: "Photo du plat"
   caption: "Présentation suggérée"
+
+# Métadonnées pour le SEO et le partage
+description: "Une description détaillée de la recette pour les moteurs de recherche et le partage sur les réseaux sociaux."
+keywords: ["mot-clé1", "mot-clé2", "mot-clé3"]
 ---
 
 ## 🍽️ Accompagnements suggérés

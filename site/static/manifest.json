@@ -1,0 +1,46 @@
+{
+  "name": "L'atelier Boulet",
+  "short_name": "Atelier Boulet",
+  "description": "Recettes, techno, BBQ, création... tout se passe ici.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "icons": [
+    {
+      "src": "/favicon-64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-atelierboulet.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-transparent.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Recettes",
+      "short_name": "Recettes",
+      "description": "Voir toutes les recettes",
+      "url": "/posts/",
+      "icons": [{ "src": "/favicon-64x64.png", "sizes": "64x64" }]
+    },
+    {
+      "name": "Astuces",
+      "short_name": "Astuces",
+      "description": "Voir toutes les astuces culinaires",
+      "url": "/astuces/",
+      "icons": [{ "src": "/favicon-64x64.png", "sizes": "64x64" }]
+    }
+  ],
+  "categories": ["food", "cooking", "recipes"],
+  "screenshots": [],
+  "orientation": "any",
+  "lang": "fr-CA"
+}

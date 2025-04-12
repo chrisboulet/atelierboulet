@@ -1,0 +1,87 @@
+<!-- Fichier pour étendre le head du thème PaperMod -->
+
+<!-- Styles d'impression -->
+<link rel="stylesheet" href="{{ "css/print.css" | relURL }}" media="print">
+
+<!-- Calculateur de portions -->
+<script src="{{ "js/portion-calculator.js" | relURL }}"></script>
+
+<!-- PWA -->
+<link rel="manifest" href="{{ "manifest.json" | relURL }}">
+<meta name="theme-color" content="#007bff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="L'atelier Boulet">
+<link rel="apple-touch-icon" href="{{ "logo-atelierboulet.png" | relURL }}">
+<script src="{{ "js/pwa-init.js" | relURL }}" defer></script>
+
+<!-- Métadonnées structurées pour les recettes (Schema.org) -->
+{{ if and (eq .Type "posts") (in .Params.categories "Recettes") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Recipe",
+  "name": "{{ .Title }}",
+  "author": {
+    "@type": "Person",
+    "name": "L'atelier Boulet"
+  },
+  "datePublished": "{{ .Date.Format "2006-01-02" }}",
+  "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}",
+  "image": "{{ with .Params.cover.image }}{{ . | absURL }}{{ end }}",
+  {{ with .Params.tempsPreparation }}"prepTime": "PT{{ . }}M",{{ end }}
+  {{ with .Params.tempsCuisson }}"cookTime": "PT{{ . }}M",{{ end }}
+  {{ with .Params.tempsTotal }}"totalTime": "PT{{ . }}M",{{ end }}
+  {{ with .Params.keywords }}"keywords": "{{ delimit . ", " }}",{{ end }}
+  {{ with .Params.difficulties }}
+  "recipeCategory": "{{ index . 0 }}",
+  {{ end }}
+  {{ with .Params.portions }}"recipeYield": "{{ . }} portions",{{ end }}
+  "recipeIngredient": [
+    {{ $ingredients := findRE "<li>(.+?)</li>" .Content }}
+    {{ range $index, $ingredient := $ingredients }}
+      {{ $cleanIngredient := replaceRE "<li>(.+?)</li>" "$1" $ingredient | replaceRE "<[^>]+>" "" }}
+      {{ if $index }},{{ end }}"{{ $cleanIngredient }}"
+    {{ end }}
+  ],
+  "recipeInstructions": [
+    {{ $instructions := findRE "<ol>(.+?)</ol>" .Content 1 }}
+    {{ if $instructions }}
+      {{ $steps := findRE "<li>(.+?)</li>" (index $instructions 0) }}
+      {{ range $index, $step := $steps }}
+        {{ $cleanStep := replaceRE "<li>(.+?)</li>" "$1" $step | replaceRE "<[^>]+>" "" }}
+        {{ if $index }},{{ end }}
+        {
+          "@type": "HowToStep",
+          "text": "{{ $cleanStep }}"
+        }
+      {{ end }}
+    {{ end }}
+  ]
+}
+</script>
+{{ end }}
+
+<!-- Open Graph amélioré pour le partage sur les réseaux sociaux -->
+{{ if .IsPage }}
+  <meta property="og:type" content="{{ if in .Params.categories "Recettes" }}article{{ else }}website{{ end }}" />
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  {{ with .Params.cover.image }}
+    <meta property="og:image" content="{{ . | absURL }}" />
+  {{ end }}
+  <meta property="og:site_name" content="{{ .Site.Title }}" />
+  {{ if in .Params.categories "Recettes" }}
+    <meta property="article:section" content="Recettes" />
+    {{ range .Params.tags }}
+      <meta property="article:tag" content="{{ . }}" />
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}" />
+{{ with .Params.cover.image }}<meta name="twitter:image" content="{{ . | absURL }}" />{{ end }}

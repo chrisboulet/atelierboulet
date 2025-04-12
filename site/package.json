@@ -1,0 +1,28 @@
+{
+  "name": "atelier-boulet",
+  "version": "1.0.0",
+  "description": "Site de recettes et astuces de cuisine",
+  "main": "index.js",
+  "scripts": {
+    "dev": "hugo server -D",
+    "build": "hugo",
+    "validate": "node scripts/validate.js",
+    "new-recipe": "powershell -File ./new-recette.ps1"
+  },
+  "keywords": [
+    "recettes",
+    "cuisine",
+    "hugo",
+    "blog"
+  ],
+  "author": "L'atelier Boulet",
+  "license": "MIT",
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.23",
+    "postcss-cli": "^10.1.0"
+  }
+}

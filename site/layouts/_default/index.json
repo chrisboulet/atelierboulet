@@ -1,0 +1,35 @@
+{{- $index := slice -}}
+{{- range where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
+    {{- $data := dict "title" .Title "permalink" .Permalink "date" (.Date.Format "2006-01-02") "content" (.Plain | htmlUnescape) -}}
+    
+    {{- if .Params.tags -}}
+        {{- $data = merge $data (dict "tags" .Params.tags) -}}
+    {{- end -}}
+    
+    {{- if .Params.categories -}}
+        {{- $data = merge $data (dict "categories" .Params.categories) -}}
+    {{- end -}}
+    
+    {{- if .Params.types -}}
+        {{- $data = merge $data (dict "types" .Params.types) -}}
+    {{- end -}}
+    
+    {{- if .Params.seasons -}}
+        {{- $data = merge $data (dict "seasons" .Params.seasons) -}}
+    {{- end -}}
+    
+    {{- if .Params.difficulties -}}
+        {{- $data = merge $data (dict "difficulties" .Params.difficulties) -}}
+    {{- end -}}
+    
+    {{- if .Params.diets -}}
+        {{- $data = merge $data (dict "diets" .Params.diets) -}}
+    {{- end -}}
+    
+    {{- if .Params.durations -}}
+        {{- $data = merge $data (dict "durations" .Params.durations) -}}
+    {{- end -}}
+    
+    {{- $index = $index | append $data -}}
+{{- end -}}
+{{- $index | jsonify -}}

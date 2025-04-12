@@ -1,0 +1,58 @@
+{{ define "main" }}
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">{{ .Title }}</h1>
+        {{ if .Description }}
+        <div class="page-description">
+            {{ .Description | markdownify }}
+        </div>
+        {{ end }}
+    </header>
+    
+    {{ if .Params.cover.image }}
+    <div class="cover">
+        <img src="{{ .Params.cover.image }}" alt="{{ .Params.cover.alt | default .Title }}" />
+        {{ if .Params.cover.caption }}
+        <div class="caption">{{ .Params.cover.caption }}</div>
+        {{ end }}
+    </div>
+    {{ end }}
+    
+    <div class="post-content">
+        {{ .Content }}
+    </div>
+    
+    {{ $tag := .File.BaseFileName }}
+    {{ $pages := where (where .Site.RegularPages "Type" "in" site.Params.mainSections) "Params.tags" "intersect" (slice $tag) }}
+    
+    {{ if $pages }}
+    <div class="collection-recipes">
+        <h2>Recettes dans cette collection</h2>
+        <div class="posts">
+            {{ range $pages }}
+            <article class="post-entry">
+                {{ $isHidden := (site.Params.cover.hidden | default site.Params.cover.hiddenInList) }}
+                {{ if and .Params.cover.image (not $isHidden) }}
+                <div class="entry-cover">
+                    <img src="{{ .Params.cover.image }}" alt="{{ .Params.cover.alt | default .Title }}" class="post-cover" />
+                </div>
+                {{ end }}
+                <header class="entry-header">
+                    <h3>{{ .Title }}</h3>
+                </header>
+                <div class="entry-content">
+                    <p>{{ .Summary | plainify | htmlUnescape }}...</p>
+                </div>
+                <footer class="entry-footer">
+                    {{ if .Date }}
+                    <span class="post-date">{{ .Date.Format "2 January 2006" }}</span>
+                    {{ end }}
+                </footer>
+                <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</article>
+{{ end }}

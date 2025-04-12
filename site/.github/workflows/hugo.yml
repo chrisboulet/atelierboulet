@@ -50,6 +50,14 @@ jobs:
           hugo-version: '0.125.7'
           extended: true
           
+      - name: Debug info
+        run: |
+          echo "GitHub workspace: $GITHUB_WORKSPACE"
+          echo "Contents of site directory:"
+          ls -la site
+          echo "Hugo version:"
+          hugo version
+      
       - name: Build
         run: hugo --minify --source site
         
@@ -76,6 +84,14 @@ jobs:
           hugo-version: '0.125.7'
           extended: true
           
+      - name: Debug info
+        run: |
+          echo "GitHub workspace: $GITHUB_WORKSPACE"
+          echo "Contents of site directory:"
+          ls -la site
+          echo "Hugo version:"
+          hugo version
+      
       - name: Build
         run: hugo --minify --source site
         
@@ -85,4 +101,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site/public
           cname: atelier.cboulet.info
-          force_orphan: true  # ✅ empêche l'erreur Git (exit 128)
+          force_orphan: true
+          full_commit_message: "Deploy: ${{ github.event.head_commit.message }}"
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'

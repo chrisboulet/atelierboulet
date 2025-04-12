@@ -1,4 +1,4 @@
-baseURL = "https://atelier.cboulet.info/"
+baseURL = "https://atelierboulet.netlify.app/"
 languageCode = "fr-ca"
 title = "L'atelier Boulet"
 theme = "PaperMod"

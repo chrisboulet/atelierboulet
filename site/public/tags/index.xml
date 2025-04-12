@@ -1,1 +1,82 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Tags on L'atelier Boulet</title><link>https://atelier.cboulet.info/tags/</link><description>Recent content in Tags on L'atelier Boulet</description><generator>Hugo -- 0.146.3</generator><language>fr-ca</language><lastBuildDate>Sat, 12 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://atelier.cboulet.info/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>Champignons</title><link>https://atelier.cboulet.info/tags/champignons/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/tags/champignons/</guid><description/></item><item><title>Crème</title><link>https://atelier.cboulet.info/tags/cr%C3%A8me/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/tags/cr%C3%A8me/</guid><description/></item><item><title>Cuisson</title><link>https://atelier.cboulet.info/tags/cuisson/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/tags/cuisson/</guid><description/></item><item><title>Ingrédient-Clé</title><link>https://atelier.cboulet.info/tags/ingr%C3%A9dient-cl%C3%A9/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/tags/ingr%C3%A9dient-cl%C3%A9/</guid><description/></item><item><title>Méthode</title><link>https://atelier.cboulet.info/tags/m%C3%A9thode/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/tags/m%C3%A9thode/</guid><description/></item><item><title>Technique</title><link>https://atelier.cboulet.info/tags/technique/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/tags/technique/</guid><description/></item><item><title>Type</title><link>https://atelier.cboulet.info/tags/type/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/tags/type/</guid><description/></item><item><title>Veau</title><link>https://atelier.cboulet.info/tags/veau/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/tags/veau/</guid><description/></item><item><title>Viande</title><link>https://atelier.cboulet.info/tags/viande/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/tags/viande/</guid><description/></item><item><title>Creme</title><link>https://atelier.cboulet.info/tags/creme/</link><pubDate>Fri, 12 Apr 2024 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/tags/creme/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on L&#39;atelier Boulet</title>
+    <link>https://atelierboulet.netlify.app/tags/</link>
+    <description>Recent content in Tags on L&#39;atelier Boulet</description>
+    <generator>Hugo -- 0.146.3</generator>
+    <language>fr-ca</language>
+    <lastBuildDate>Sat, 12 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://atelierboulet.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Champignons</title>
+      <link>https://atelierboulet.netlify.app/tags/champignons/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://atelierboulet.netlify.app/tags/champignons/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Crème</title>
+      <link>https://atelierboulet.netlify.app/tags/cr%C3%A8me/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://atelierboulet.netlify.app/tags/cr%C3%A8me/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cuisson</title>
+      <link>https://atelierboulet.netlify.app/tags/cuisson/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://atelierboulet.netlify.app/tags/cuisson/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ingrédient-Clé</title>
+      <link>https://atelierboulet.netlify.app/tags/ingr%C3%A9dient-cl%C3%A9/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://atelierboulet.netlify.app/tags/ingr%C3%A9dient-cl%C3%A9/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Méthode</title>
+      <link>https://atelierboulet.netlify.app/tags/m%C3%A9thode/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://atelierboulet.netlify.app/tags/m%C3%A9thode/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Technique</title>
+      <link>https://atelierboulet.netlify.app/tags/technique/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://atelierboulet.netlify.app/tags/technique/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Type</title>
+      <link>https://atelierboulet.netlify.app/tags/type/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://atelierboulet.netlify.app/tags/type/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Veau</title>
+      <link>https://atelierboulet.netlify.app/tags/veau/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://atelierboulet.netlify.app/tags/veau/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Viande</title>
+      <link>https://atelierboulet.netlify.app/tags/viande/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://atelierboulet.netlify.app/tags/viande/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Creme</title>
+      <link>https://atelierboulet.netlify.app/tags/creme/</link>
+      <pubDate>Fri, 12 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://atelierboulet.netlify.app/tags/creme/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

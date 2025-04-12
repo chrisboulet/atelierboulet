@@ -97,3 +97,9 @@ ignoreLogs = ['warning-goldmark-raw-html']
     name = "Recherche"
     url = "/search/"
     weight = 5
+    
+  [[menu.main]]
+    identifier = "admin"
+    name = "Administration"
+    url = "/admin/"
+    weight = 6

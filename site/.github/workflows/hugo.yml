@@ -1,4 +1,4 @@
-name: Deploy Hugo site to GitHub Pages
+name: Deploy Hugo site to Netlify
 
 on:
   push:
@@ -7,75 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Check links
-        uses: lycheeverse/lychee-action@v1
-        with:
-          args: --verbose --no-progress './site/content/**/*.md'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  optimize-images:
-    runs-on: ubuntu-latest
-    needs: validate
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Optimize images
-        uses: calibreapp/image-actions@main
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          jpegQuality: '80'
-          pngQuality: '80'
-          webpQuality: '80'
-          ignorePaths: 'node_modules/**,build/**,dist/**'
-
-  preview:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    needs: optimize-images
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.125.7'
-          extended: true
-          
-      - name: Debug info
-        run: |
-          echo "GitHub workspace: $GITHUB_WORKSPACE"
-          echo "Contents of site directory:"
-          ls -la site
-          echo "Hugo version:"
-          hugo version
-      
-      - name: Build
-        run: hugo --minify --source site
-        
-      - name: Deploy preview
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site/public
-          destination_dir: preview/${{ github.event.pull_request.number }}
-
   deploy:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-    needs: optimize-images
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -89,14 +22,6 @@ jobs:
           hugo-version: '0.125.7'
           extended: true
           
-      - name: Debug info
-        run: |
-          echo "GitHub workspace: $GITHUB_WORKSPACE"
-          echo "Contents of site directory:"
-          ls -la site
-          echo "Hugo version:"
-          hugo version
-      
       - name: Build
         run: hugo --minify --source site
         
@@ -107,21 +32,17 @@ jobs:
           echo "Contenu du répertoire public:"
           ls -la ./site/public/
       
-      - name: Configure GitHub Pages
-        run: |
-          echo "Configuration de GitHub Pages..."
-          echo "Contenu du répertoire public:"
-          ls -la ./site/public/
-          
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2
         with:
-          enablement: true
-          
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: './site/public'
-          
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v3
+          publish-dir: './site/public'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1

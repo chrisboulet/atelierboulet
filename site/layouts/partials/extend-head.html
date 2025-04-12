@@ -1,19 +1,19 @@
 <!-- Fichier pour étendre le head du thème PaperMod -->
 
 <!-- Styles d'impression -->
-<link rel="stylesheet" href="{{ "css/print.css" | relURL }}" media="print">
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/print.css" media="print">
 
 <!-- Calculateur de portions -->
-<script src="{{ "js/portion-calculator.js" | relURL }}"></script>
+<script src="{{ .Site.BaseURL }}js/portion-calculator.js"></script>
 
 <!-- PWA -->
-<link rel="manifest" href="{{ "manifest.json" | relURL }}">
+<link rel="manifest" href="{{ .Site.BaseURL }}manifest.json">
 <meta name="theme-color" content="#007bff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="L'atelier Boulet">
-<link rel="apple-touch-icon" href="{{ "logo-atelierboulet.png" | relURL }}">
-<script src="{{ "js/pwa-init.js" | relURL }}" defer></script>
+<link rel="apple-touch-icon" href="{{ .Site.BaseURL }}logo-atelierboulet.png">
+<script src="{{ .Site.BaseURL }}js/pwa-init.js" defer></script>
 
 <!-- Métadonnées structurées pour les recettes (Schema.org) -->
 {{ if and (eq .Type "posts") (in .Params.categories "Recettes") }}

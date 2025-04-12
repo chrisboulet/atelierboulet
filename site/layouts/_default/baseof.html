@@ -7,7 +7,7 @@
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 
     {{- /* Favicon */}}
-    <link rel="shortcut icon" href="{{ .Site.Params.favicon | default "favicon.ico" | relURL }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ .Site.BaseURL }}{{ .Site.Params.favicon | default "favicon.ico" }}" type="image/x-icon">
 
     {{- /* Theme CSS */}}
     {{- $stylesheet := resources.Get "css/style.css" | resources.Minify }}
@@ -27,7 +27,7 @@
             <div class="logo">
                 <a href="{{ "" | relURL }}">
                     {{ if .Site.Params.logo }}
-                    <img src="{{ .Site.Params.logo | relURL }}" alt="{{ .Site.Title }}" />
+                    <img src="{{ .Site.BaseURL }}{{ .Site.Params.logo }}" alt="{{ .Site.Title }}" />
                     {{ else }}
                     <span class="site-name">{{ .Site.Title }}</span>
                     {{ end }}

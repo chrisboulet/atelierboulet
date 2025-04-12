@@ -74,6 +74,8 @@ jobs:
     needs: optimize-images
     permissions:
       contents: write
+      pages: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -105,13 +107,21 @@ jobs:
           echo "Contenu du répertoire public:"
           ls -la ./site/public/
       
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Configure GitHub Pages
+        run: |
+          echo "Configuration de GitHub Pages..."
+          echo "Contenu du répertoire public:"
+          ls -la ./site/public/
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
         with:
-          folder: ./site/public
-          branch: gh-pages
-          clean: true
-          clean-exclude: |
-            .nojekyll
-            CNAME
-          commit-message: "Deploy: ${{ github.event.head_commit.message }}"
+          enablement: true
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: './site/public'
+          
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v3

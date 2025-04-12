@@ -2,7 +2,7 @@ backend:
   name: github
   repo: chrisboulet/atelierboulet
   branch: main
-  base_url: https://YOUR_AUTH0_DOMAIN
+  base_url: https://YOUR_AUTH0_DOMAINdev-rm12gnk2hvgfnxxc.us.auth0.com
   auth_endpoint: authorize
   api_root: https://api.github.com
   app_id: ''  # Sera rempli dynamiquement par Flutter

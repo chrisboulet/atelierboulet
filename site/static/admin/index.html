@@ -5,26 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Administration | L'atelier Boulet</title>
   <link rel="icon" type="image/png" href="/favicon-64x64.png" />
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+  <style>
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .login-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .login-button:hover {
+      background-color: #0056b3;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <!-- Include the script that builds the page and powers Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <div id="login-screen" class="login-container">
+    <h1>Administration L'atelier Boulet</h1>
+    <p>Connectez-vous pour gérer le contenu du site</p>
+    <button id="login-button" class="login-button">Se connecter</button>
+  </div>
+  
+  <div id="cms-container" class="hidden">
+    <!-- Include the script that builds the page and powers Netlify CMS -->
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  </div>
   
   <script>
     // Personnalisation de l'éditeur
-    CMS.registerPreviewStyle("/css/style.min.css");
-    
-    // Redirection après connexion
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
+    document.addEventListener('DOMContentLoaded', async function() {
+      // Initialisation de Auth0
+      let auth0Client = null;
+      try {
+        auth0Client = await createAuth0Client({
+          domain: 'YOUR_AUTH0_DOMAIN',
+          clientId: 'YOUR_AUTH0_CLIENT_ID',
+          authorizationParams: {
+            redirect_uri: window.location.origin + '/admin/'
+          }
+        });
+        
+        // Vérifier si l'utilisateur est redirigé après authentification
+        if (window.location.search.includes("code=")) {
+          await auth0Client.handleRedirectCallback();
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        // Vérifier si l'utilisateur est authentifié
+        if (await auth0Client.isAuthenticated()) {
+          // Afficher le CMS
+          document.getElementById('login-screen').classList.add('hidden');
+          document.getElementById('cms-container').classList.remove('hidden');
+          
+          // Configurer le CMS avec Auth0
+          if (window.CMS) {
+            CMS.registerPreviewStyle("/css/style.min.css");
+          }
+        } else {
+          // Afficher l'écran de connexion
+          document.getElementById('login-button').addEventListener('click', async function() {
+            await auth0Client.loginWithRedirect();
           });
         }
-      });
-    }
+      } catch (e) {
+        console.error("Erreur d'authentification:", e);
+      }
+    });
   </script>
 </body>
 </html>

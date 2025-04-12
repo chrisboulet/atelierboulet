@@ -1,61 +1,126 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>L&#39;atelier Boulet</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on L&#39;atelier Boulet</description>
-    <generator>Hugo</generator>
-    <language>fr-ca</language>
-    <lastBuildDate>Sat, 12 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>La cuisson parfaite des viandes</title>
-      <link>http://localhost:1313/astuces/cuisson-parfaite-viande/</link>
-      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/astuces/cuisson-parfaite-viande/</guid>
-      <description>&lt;h1 id=&#34;maîtriser-la-cuisson-des-viandes&#34;&gt;Maîtriser la cuisson des viandes&lt;/h1&gt;&#xA;&lt;p&gt;La cuisson de la viande est souvent source d&amp;rsquo;anxiété pour de nombreux cuisiniers amateurs. Trop cuite, elle devient sèche; pas assez, elle peut être dangereuse. Voici un guide complet pour vous aider à obtenir des résultats parfaits.&lt;/p&gt;&#xA;&lt;h2 id=&#34;les-principes-fondamentaux&#34;&gt;Les principes fondamentaux&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-la-température-ambiante&#34;&gt;1. La température ambiante&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;Toujours&lt;/strong&gt; sortir la viande du réfrigérateur au moins 30 minutes avant la cuisson. Une viande à température ambiante cuit plus uniformément.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Nom de la recette</title>
-      <link>http://localhost:1313/posts/recettetest/</link>
-      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/recettetest/</guid>
-      <description>&lt;h2 id=&#34;-accompagnements-suggérés&#34;&gt;🍽️ Accompagnements suggérés&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Légume vert vapeur&lt;/li&gt;&#xA;&lt;li&gt;Riz jasmin ou purée rustique&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;-vin-ou-breuvage-approprié&#34;&gt;🍷 Vin ou breuvage approprié&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Vin blanc sec ou bière blonde fruitée&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-ingrédients&#34;&gt;🧾 Ingrédients&lt;/h2&gt;&#xA;&lt;div style=&#34;display: flex; justify-content: space-between; gap: 2rem;&#34;&gt;&#xA;&lt;div&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;500 g de veau en cubes&lt;/li&gt;&#xA;&lt;li&gt;1 oignon&lt;/li&gt;&#xA;&lt;li&gt;2 gousses d’ail&lt;/li&gt;&#xA;&lt;li&gt;1 c. à soupe de moutarde&lt;/li&gt;&#xA;&lt;li&gt;150 ml de vin blanc&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/div&gt;&#xA;&lt;div&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;200 ml de crème 15 %&lt;/li&gt;&#xA;&lt;li&gt;250 g de champignons&lt;/li&gt;&#xA;&lt;li&gt;Sel, poivre&lt;/li&gt;&#xA;&lt;li&gt;Huile d’olive&lt;/li&gt;&#xA;&lt;li&gt;Persil frais (optionnel)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-préparation&#34;&gt;👨‍🍳 Préparation&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Faire revenir la viande dans l’huile chaude.&lt;/li&gt;&#xA;&lt;li&gt;Ajouter oignons, ail et champignons. Cuire 5 minutes.&lt;/li&gt;&#xA;&lt;li&gt;Déglacer avec le vin blanc. Réduire 3 minutes.&lt;/li&gt;&#xA;&lt;li&gt;Ajouter crème et moutarde. Mijoter 20 minutes à feu doux.&lt;/li&gt;&#xA;&lt;li&gt;Rectifier l’assaisonnement et servir chaud.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-astuces&#34;&gt;💡 Astuces&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Ajouter un filet de jus de citron pour équilibrer la crème.&lt;/li&gt;&#xA;&lt;li&gt;Excellent avec des pâtes fraîches ou du couscous.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Nom de la recette</title>
-      <link>http://localhost:1313/posts/veau-au-cari-doux-v2/</link>
-      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/veau-au-cari-doux-v2/</guid>
-      <description>&lt;h2 id=&#34;-accompagnements-suggérés&#34;&gt;🍽️ Accompagnements suggérés&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Légume vert vapeur&lt;/li&gt;&#xA;&lt;li&gt;Riz jasmin ou purée rustique&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;-vin-ou-breuvage-approprié&#34;&gt;🍷 Vin ou breuvage approprié&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Vin blanc sec ou bière blonde fruitée&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-ingrédients&#34;&gt;🧾 Ingrédients&lt;/h2&gt;&#xA;&lt;div style=&#34;display: flex; justify-content: space-between; gap: 2rem;&#34;&gt;&#xA;&lt;div&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;500 g de veau en cubes&lt;/li&gt;&#xA;&lt;li&gt;1 oignon&lt;/li&gt;&#xA;&lt;li&gt;2 gousses d’ail&lt;/li&gt;&#xA;&lt;li&gt;1 c. à soupe de moutarde&lt;/li&gt;&#xA;&lt;li&gt;150 ml de vin blanc&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/div&gt;&#xA;&lt;div&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;200 ml de crème 15 %&lt;/li&gt;&#xA;&lt;li&gt;250 g de champignons&lt;/li&gt;&#xA;&lt;li&gt;Sel, poivre&lt;/li&gt;&#xA;&lt;li&gt;Huile d’olive&lt;/li&gt;&#xA;&lt;li&gt;Persil frais (optionnel)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-préparation&#34;&gt;👨‍🍳 Préparation&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Faire revenir la viande dans l’huile chaude.&lt;/li&gt;&#xA;&lt;li&gt;Ajouter oignons, ail et champignons. Cuire 5 minutes.&lt;/li&gt;&#xA;&lt;li&gt;Déglacer avec le vin blanc. Réduire 3 minutes.&lt;/li&gt;&#xA;&lt;li&gt;Ajouter crème et moutarde. Mijoter 20 minutes à feu doux.&lt;/li&gt;&#xA;&lt;li&gt;Rectifier l’assaisonnement et servir chaud.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-astuces&#34;&gt;💡 Astuces&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Ajouter un filet de jus de citron pour équilibrer la crème.&lt;/li&gt;&#xA;&lt;li&gt;Excellent avec des pâtes fraîches ou du couscous.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Veau de grain à la crème et aux champignons</title>
-      <link>http://localhost:1313/posts/veau-a-la-creme/</link>
-      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/veau-a-la-creme/</guid>
-      <description>&lt;p&gt;Une recette savoureuse de fricassée de veau, parfaite pour impressionner avec simplicité.&lt;/p&gt;&#xA;&lt;h3 id=&#34;ingrédients&#34;&gt;Ingrédients&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;600 g de cubes de veau de grain&lt;/li&gt;&#xA;&lt;li&gt;250 g de champignons tranchés&lt;/li&gt;&#xA;&lt;li&gt;1 oignon émincé&lt;/li&gt;&#xA;&lt;li&gt;2 gousses d’ail hachées&lt;/li&gt;&#xA;&lt;li&gt;1 c. à soupe de moutarde à l’ancienne&lt;/li&gt;&#xA;&lt;li&gt;150 ml de vin blanc sec&lt;/li&gt;&#xA;&lt;li&gt;200 ml de crème 15%&lt;/li&gt;&#xA;&lt;li&gt;Huile, sel, poivre&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;préparation&#34;&gt;Préparation&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Saisir le veau dans un peu d’huile.&lt;/li&gt;&#xA;&lt;li&gt;Faire revenir les oignons, l’ail, et les champignons.&lt;/li&gt;&#xA;&lt;li&gt;Déglacer avec le vin blanc.&lt;/li&gt;&#xA;&lt;li&gt;Ajouter la crème, la moutarde, et mijoter à feu doux 20 minutes.&lt;/li&gt;&#xA;&lt;li&gt;Servir avec tagliatelles, purée ou riz.&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
-    </item>
-    <item>
-      <title>Veau a la creme et champignons</title>
-      <link>http://localhost:1313/posts/veau/</link>
-      <pubDate>Fri, 12 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/veau/</guid>
-      <description>&lt;p&gt;Une recette savoureuse de fricassee de veau.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Ingredients :&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Veau de grain&lt;/li&gt;&#xA;&lt;li&gt;Champignons&lt;/li&gt;&#xA;&lt;li&gt;Vin blanc&lt;/li&gt;&#xA;&lt;li&gt;Creme 15%&lt;/li&gt;&#xA;&lt;li&gt;Ail, oignons, moutarde a l&amp;rsquo;ancienne&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;Preparation :&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Saisir le veau.&lt;/li&gt;&#xA;&lt;li&gt;Faire revenir les legumes.&lt;/li&gt;&#xA;&lt;li&gt;Deglacer avec le vin.&lt;/li&gt;&#xA;&lt;li&gt;Ajouter la creme et mijoter.&lt;/li&gt;&#xA;&lt;li&gt;Servir avec des tagliatelles.&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
-    </item>
-    <item>
-      <title>Recherche</title>
-      <link>http://localhost:1313/search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/search/</guid>
-      <description>Rechercher dans toutes les recettes et astuces</description>
-    </item>
-    <item>
-      <title>Repas Rapides (30 minutes ou moins)</title>
-      <link>http://localhost:1313/collections/repas-rapides/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/collections/repas-rapides/</guid>
-      <description>&lt;p&gt;Vous manquez de temps mais voulez quand même bien manger? Cette collection regroupe toutes nos recettes qui peuvent être préparées en 30 minutes ou moins.&lt;/p&gt;&#xA;&lt;p&gt;Parfaites pour les soirs de semaine chargés ou quand vous avez des invités surprise!&lt;/p&gt;&#xA;&lt;h2 id=&#34;recettes-dans-cette-collection&#34;&gt;Recettes dans cette collection&lt;/h2&gt;&#xA;&lt;p&gt;Cette collection inclut toutes les recettes avec le tag &amp;ldquo;rapide&amp;rdquo; ou qui ont un temps de préparation de 30 minutes ou moins.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>L'atelier Boulet</title><link>https://atelier.cboulet.info/</link><description>Recent content on L'atelier Boulet</description><generator>Hugo -- 0.146.3</generator><language>fr-ca</language><lastBuildDate>Sat, 12 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://atelier.cboulet.info/index.xml" rel="self" type="application/rss+xml"/><item><title>La cuisson parfaite des viandes</title><link>https://atelier.cboulet.info/astuces/cuisson-parfaite-viande/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/astuces/cuisson-parfaite-viande/</guid><description>Guide complet pour maîtriser la cuisson de différentes viandes et obtenir des résultats parfaits à chaque fois.</description></item><item><title>Nom de la recette</title><link>https://atelier.cboulet.info/posts/recettetest/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/posts/recettetest/</guid><description>&lt;h2 id="-accompagnements-suggérés">🍽️ Accompagnements suggérés&lt;/h2>
+&lt;ul>
+&lt;li>Légume vert vapeur&lt;/li>
+&lt;li>Riz jasmin ou purée rustique&lt;/li>
+&lt;/ul>
+&lt;h2 id="-vin-ou-breuvage-approprié">🍷 Vin ou breuvage approprié&lt;/h2>
+&lt;ul>
+&lt;li>Vin blanc sec ou bière blonde fruitée&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="-ingrédients">🧾 Ingrédients&lt;/h2>
+&lt;div style="display: flex; justify-content: space-between; gap: 2rem;">
+&lt;div>
+&lt;ul>
+&lt;li>500 g de veau en cubes&lt;/li>
+&lt;li>1 oignon&lt;/li>
+&lt;li>2 gousses d’ail&lt;/li>
+&lt;li>1 c. à soupe de moutarde&lt;/li>
+&lt;li>150 ml de vin blanc&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;div>
+&lt;ul>
+&lt;li>200 ml de crème 15 %&lt;/li>
+&lt;li>250 g de champignons&lt;/li>
+&lt;li>Sel, poivre&lt;/li>
+&lt;li>Huile d’olive&lt;/li>
+&lt;li>Persil frais (optionnel)&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;/div>
+&lt;hr>
+&lt;h2 id="-préparation">👨‍🍳 Préparation&lt;/h2>
+&lt;ol>
+&lt;li>Faire revenir la viande dans l’huile chaude.&lt;/li>
+&lt;li>Ajouter oignons, ail et champignons. Cuire 5 minutes.&lt;/li>
+&lt;li>Déglacer avec le vin blanc. Réduire 3 minutes.&lt;/li>
+&lt;li>Ajouter crème et moutarde. Mijoter 20 minutes à feu doux.&lt;/li>
+&lt;li>Rectifier l’assaisonnement et servir chaud.&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="-astuces">💡 Astuces&lt;/h2>
+&lt;ul>
+&lt;li>Ajouter un filet de jus de citron pour équilibrer la crème.&lt;/li>
+&lt;li>Excellent avec des pâtes fraîches ou du couscous.&lt;/li>
+&lt;/ul></description></item><item><title>Nom de la recette</title><link>https://atelier.cboulet.info/posts/veau-au-cari-doux-v2/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/posts/veau-au-cari-doux-v2/</guid><description>&lt;h2 id="-accompagnements-suggérés">🍽️ Accompagnements suggérés&lt;/h2>
+&lt;ul>
+&lt;li>Légume vert vapeur&lt;/li>
+&lt;li>Riz jasmin ou purée rustique&lt;/li>
+&lt;/ul>
+&lt;h2 id="-vin-ou-breuvage-approprié">🍷 Vin ou breuvage approprié&lt;/h2>
+&lt;ul>
+&lt;li>Vin blanc sec ou bière blonde fruitée&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="-ingrédients">🧾 Ingrédients&lt;/h2>
+&lt;div style="display: flex; justify-content: space-between; gap: 2rem;">
+&lt;div>
+&lt;ul>
+&lt;li>500 g de veau en cubes&lt;/li>
+&lt;li>1 oignon&lt;/li>
+&lt;li>2 gousses d’ail&lt;/li>
+&lt;li>1 c. à soupe de moutarde&lt;/li>
+&lt;li>150 ml de vin blanc&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;div>
+&lt;ul>
+&lt;li>200 ml de crème 15 %&lt;/li>
+&lt;li>250 g de champignons&lt;/li>
+&lt;li>Sel, poivre&lt;/li>
+&lt;li>Huile d’olive&lt;/li>
+&lt;li>Persil frais (optionnel)&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;/div>
+&lt;hr>
+&lt;h2 id="-préparation">👨‍🍳 Préparation&lt;/h2>
+&lt;ol>
+&lt;li>Faire revenir la viande dans l’huile chaude.&lt;/li>
+&lt;li>Ajouter oignons, ail et champignons. Cuire 5 minutes.&lt;/li>
+&lt;li>Déglacer avec le vin blanc. Réduire 3 minutes.&lt;/li>
+&lt;li>Ajouter crème et moutarde. Mijoter 20 minutes à feu doux.&lt;/li>
+&lt;li>Rectifier l’assaisonnement et servir chaud.&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="-astuces">💡 Astuces&lt;/h2>
+&lt;ul>
+&lt;li>Ajouter un filet de jus de citron pour équilibrer la crème.&lt;/li>
+&lt;li>Excellent avec des pâtes fraîches ou du couscous.&lt;/li>
+&lt;/ul></description></item><item><title>Veau de grain à la crème et aux champignons</title><link>https://atelier.cboulet.info/posts/veau-a-la-creme/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/posts/veau-a-la-creme/</guid><description>&lt;p>Une recette savoureuse de fricassée de veau, parfaite pour impressionner avec simplicité.&lt;/p>
+&lt;h3 id="ingrédients">Ingrédients&lt;/h3>
+&lt;ul>
+&lt;li>600 g de cubes de veau de grain&lt;/li>
+&lt;li>250 g de champignons tranchés&lt;/li>
+&lt;li>1 oignon émincé&lt;/li>
+&lt;li>2 gousses d’ail hachées&lt;/li>
+&lt;li>1 c. à soupe de moutarde à l’ancienne&lt;/li>
+&lt;li>150 ml de vin blanc sec&lt;/li>
+&lt;li>200 ml de crème 15%&lt;/li>
+&lt;li>Huile, sel, poivre&lt;/li>
+&lt;/ul>
+&lt;h3 id="préparation">Préparation&lt;/h3>
+&lt;ol>
+&lt;li>Saisir le veau dans un peu d’huile.&lt;/li>
+&lt;li>Faire revenir les oignons, l’ail, et les champignons.&lt;/li>
+&lt;li>Déglacer avec le vin blanc.&lt;/li>
+&lt;li>Ajouter la crème, la moutarde, et mijoter à feu doux 20 minutes.&lt;/li>
+&lt;li>Servir avec tagliatelles, purée ou riz.&lt;/li>
+&lt;/ol></description></item><item><title>Veau a la creme et champignons</title><link>https://atelier.cboulet.info/posts/veau/</link><pubDate>Fri, 12 Apr 2024 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/posts/veau/</guid><description>&lt;p>Une recette savoureuse de fricassee de veau.&lt;/p>
+&lt;p>&lt;strong>Ingredients :&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Veau de grain&lt;/li>
+&lt;li>Champignons&lt;/li>
+&lt;li>Vin blanc&lt;/li>
+&lt;li>Creme 15%&lt;/li>
+&lt;li>Ail, oignons, moutarde a l&amp;rsquo;ancienne&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Preparation :&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>Saisir le veau.&lt;/li>
+&lt;li>Faire revenir les legumes.&lt;/li>
+&lt;li>Deglacer avec le vin.&lt;/li>
+&lt;li>Ajouter la creme et mijoter.&lt;/li>
+&lt;li>Servir avec des tagliatelles.&lt;/li>
+&lt;/ol></description></item><item><title>Repas Rapides (30 minutes ou moins)</title><link>https://atelier.cboulet.info/collections/repas-rapides/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/collections/repas-rapides/</guid><description>Des recettes délicieuses prêtes en 30 minutes ou moins</description></item></channel></rss>

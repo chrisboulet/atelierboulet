@@ -1,19 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Creme on L&#39;atelier Boulet</title>
-    <link>http://localhost:1313/tags/creme/</link>
-    <description>Recent content in Creme on L&#39;atelier Boulet</description>
-    <generator>Hugo</generator>
-    <language>fr-ca</language>
-    <lastBuildDate>Fri, 12 Apr 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/creme/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Veau a la creme et champignons</title>
-      <link>http://localhost:1313/posts/veau/</link>
-      <pubDate>Fri, 12 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/veau/</guid>
-      <description>&lt;p&gt;Une recette savoureuse de fricassee de veau.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Ingredients :&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Veau de grain&lt;/li&gt;&#xA;&lt;li&gt;Champignons&lt;/li&gt;&#xA;&lt;li&gt;Vin blanc&lt;/li&gt;&#xA;&lt;li&gt;Creme 15%&lt;/li&gt;&#xA;&lt;li&gt;Ail, oignons, moutarde a l&amp;rsquo;ancienne&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;Preparation :&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Saisir le veau.&lt;/li&gt;&#xA;&lt;li&gt;Faire revenir les legumes.&lt;/li&gt;&#xA;&lt;li&gt;Deglacer avec le vin.&lt;/li&gt;&#xA;&lt;li&gt;Ajouter la creme et mijoter.&lt;/li&gt;&#xA;&lt;li&gt;Servir avec des tagliatelles.&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Creme on L'atelier Boulet</title><link>https://atelier.cboulet.info/tags/creme/</link><description>Recent content in Creme on L'atelier Boulet</description><generator>Hugo -- 0.146.3</generator><language>fr-ca</language><lastBuildDate>Fri, 12 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://atelier.cboulet.info/tags/creme/index.xml" rel="self" type="application/rss+xml"/><item><title>Veau a la creme et champignons</title><link>https://atelier.cboulet.info/posts/veau/</link><pubDate>Fri, 12 Apr 2024 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/posts/veau/</guid><description>&lt;p>Une recette savoureuse de fricassee de veau.&lt;/p>
+&lt;p>&lt;strong>Ingredients :&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Veau de grain&lt;/li>
+&lt;li>Champignons&lt;/li>
+&lt;li>Vin blanc&lt;/li>
+&lt;li>Creme 15%&lt;/li>
+&lt;li>Ail, oignons, moutarde a l&amp;rsquo;ancienne&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Preparation :&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>Saisir le veau.&lt;/li>
+&lt;li>Faire revenir les legumes.&lt;/li>
+&lt;li>Deglacer avec le vin.&lt;/li>
+&lt;li>Ajouter la creme et mijoter.&lt;/li>
+&lt;li>Servir avec des tagliatelles.&lt;/li>
+&lt;/ol></description></item></channel></rss>

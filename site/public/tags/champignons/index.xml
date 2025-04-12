@@ -1,26 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Champignons on L&#39;atelier Boulet</title>
-    <link>http://localhost:1313/tags/champignons/</link>
-    <description>Recent content in Champignons on L&#39;atelier Boulet</description>
-    <generator>Hugo</generator>
-    <language>fr-ca</language>
-    <lastBuildDate>Sat, 12 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/champignons/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Veau de grain à la crème et aux champignons</title>
-      <link>http://localhost:1313/posts/veau-a-la-creme/</link>
-      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/veau-a-la-creme/</guid>
-      <description>&lt;p&gt;Une recette savoureuse de fricassée de veau, parfaite pour impressionner avec simplicité.&lt;/p&gt;&#xA;&lt;h3 id=&#34;ingrédients&#34;&gt;Ingrédients&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;600 g de cubes de veau de grain&lt;/li&gt;&#xA;&lt;li&gt;250 g de champignons tranchés&lt;/li&gt;&#xA;&lt;li&gt;1 oignon émincé&lt;/li&gt;&#xA;&lt;li&gt;2 gousses d’ail hachées&lt;/li&gt;&#xA;&lt;li&gt;1 c. à soupe de moutarde à l’ancienne&lt;/li&gt;&#xA;&lt;li&gt;150 ml de vin blanc sec&lt;/li&gt;&#xA;&lt;li&gt;200 ml de crème 15%&lt;/li&gt;&#xA;&lt;li&gt;Huile, sel, poivre&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;préparation&#34;&gt;Préparation&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Saisir le veau dans un peu d’huile.&lt;/li&gt;&#xA;&lt;li&gt;Faire revenir les oignons, l’ail, et les champignons.&lt;/li&gt;&#xA;&lt;li&gt;Déglacer avec le vin blanc.&lt;/li&gt;&#xA;&lt;li&gt;Ajouter la crème, la moutarde, et mijoter à feu doux 20 minutes.&lt;/li&gt;&#xA;&lt;li&gt;Servir avec tagliatelles, purée ou riz.&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
-    </item>
-    <item>
-      <title>Veau a la creme et champignons</title>
-      <link>http://localhost:1313/posts/veau/</link>
-      <pubDate>Fri, 12 Apr 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/veau/</guid>
-      <description>&lt;p&gt;Une recette savoureuse de fricassee de veau.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Ingredients :&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Veau de grain&lt;/li&gt;&#xA;&lt;li&gt;Champignons&lt;/li&gt;&#xA;&lt;li&gt;Vin blanc&lt;/li&gt;&#xA;&lt;li&gt;Creme 15%&lt;/li&gt;&#xA;&lt;li&gt;Ail, oignons, moutarde a l&amp;rsquo;ancienne&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;Preparation :&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Saisir le veau.&lt;/li&gt;&#xA;&lt;li&gt;Faire revenir les legumes.&lt;/li&gt;&#xA;&lt;li&gt;Deglacer avec le vin.&lt;/li&gt;&#xA;&lt;li&gt;Ajouter la creme et mijoter.&lt;/li&gt;&#xA;&lt;li&gt;Servir avec des tagliatelles.&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Champignons on L'atelier Boulet</title><link>https://atelier.cboulet.info/tags/champignons/</link><description>Recent content in Champignons on L'atelier Boulet</description><generator>Hugo -- 0.146.3</generator><language>fr-ca</language><lastBuildDate>Sat, 12 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://atelier.cboulet.info/tags/champignons/index.xml" rel="self" type="application/rss+xml"/><item><title>Veau de grain à la crème et aux champignons</title><link>https://atelier.cboulet.info/posts/veau-a-la-creme/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/posts/veau-a-la-creme/</guid><description>&lt;p>Une recette savoureuse de fricassée de veau, parfaite pour impressionner avec simplicité.&lt;/p>
+&lt;h3 id="ingrédients">Ingrédients&lt;/h3>
+&lt;ul>
+&lt;li>600 g de cubes de veau de grain&lt;/li>
+&lt;li>250 g de champignons tranchés&lt;/li>
+&lt;li>1 oignon émincé&lt;/li>
+&lt;li>2 gousses d’ail hachées&lt;/li>
+&lt;li>1 c. à soupe de moutarde à l’ancienne&lt;/li>
+&lt;li>150 ml de vin blanc sec&lt;/li>
+&lt;li>200 ml de crème 15%&lt;/li>
+&lt;li>Huile, sel, poivre&lt;/li>
+&lt;/ul>
+&lt;h3 id="préparation">Préparation&lt;/h3>
+&lt;ol>
+&lt;li>Saisir le veau dans un peu d’huile.&lt;/li>
+&lt;li>Faire revenir les oignons, l’ail, et les champignons.&lt;/li>
+&lt;li>Déglacer avec le vin blanc.&lt;/li>
+&lt;li>Ajouter la crème, la moutarde, et mijoter à feu doux 20 minutes.&lt;/li>
+&lt;li>Servir avec tagliatelles, purée ou riz.&lt;/li>
+&lt;/ol></description></item><item><title>Veau a la creme et champignons</title><link>https://atelier.cboulet.info/posts/veau/</link><pubDate>Fri, 12 Apr 2024 00:00:00 +0000</pubDate><guid>https://atelier.cboulet.info/posts/veau/</guid><description>&lt;p>Une recette savoureuse de fricassee de veau.&lt;/p>
+&lt;p>&lt;strong>Ingredients :&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Veau de grain&lt;/li>
+&lt;li>Champignons&lt;/li>
+&lt;li>Vin blanc&lt;/li>
+&lt;li>Creme 15%&lt;/li>
+&lt;li>Ail, oignons, moutarde a l&amp;rsquo;ancienne&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Preparation :&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>Saisir le veau.&lt;/li>
+&lt;li>Faire revenir les legumes.&lt;/li>
+&lt;li>Deglacer avec le vin.&lt;/li>
+&lt;li>Ajouter la creme et mijoter.&lt;/li>
+&lt;li>Servir avec des tagliatelles.&lt;/li>
+&lt;/ol></description></item></channel></rss>

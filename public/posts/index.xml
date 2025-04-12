@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on L’atelier Boulet</title>
+    <link>https://atelier.cboulet.info/posts/</link>
+    <description>Recent content in Posts on L’atelier Boulet</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-ca</language>
+    <lastBuildDate>Fri, 12 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://atelier.cboulet.info/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Veau de grain à la crème et aux champignons</title>
+      <link>https://atelier.cboulet.info/posts/veau-a-la-creme/</link>
+      <pubDate>Fri, 12 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://atelier.cboulet.info/posts/veau-a-la-creme/</guid>
+      <description>Une recette savoureuse de fricassée de veau, parfaite pour impressionner avec simplicité.&#xA;Ingrédients : veau de grain, champignons, vin blanc, crème, ail, oignons, moutarde.&#xA;Préparation :&#xA;Saisir le veau. Faire revenir les légumes. Déglacer avec le vin. Ajouter la crème et mijoter. Servir avec tagliatelles ou purée. Bon appétit!</description>
+    </item>
+  </channel>
+</rss>

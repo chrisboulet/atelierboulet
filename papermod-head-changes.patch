@@ -1,0 +1,15 @@
+diff --git a/layouts/partials/head.html b/layouts/partials/head.html
+index 3e55c67..d1a56cd 100644
+--- a/layouts/partials/head.html
++++ b/layouts/partials/head.html
+@@ -151,7 +151,7 @@
+ {{- /* Misc */}}
+ {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
+ {{- template "_internal/google_analytics.html" . }}
+-{{- template "partials/templates/opengraph.html" . }}
+-{{- template "partials/templates/twitter_cards.html" . }}
+-{{- template "partials/templates/schema_json.html" . }}
++{{/*- template "partials/templates/opengraph.html" . */}}
++{{/*- template "partials/templates/twitter_cards.html" . */}}
++{{/* partial "partials/templates/schema_json.html" . */}}
+ {{- end -}}

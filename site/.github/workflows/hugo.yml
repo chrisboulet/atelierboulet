@@ -21,12 +21,12 @@ jobs:
         extended: true
 
     - name: Build
-      run: hugo --minify --source site --destination public
+      run: hugo --minify --source site
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+        publish_dir: ./site/public
         cname: atelier.cboulet.info
         force_orphan: true  # ✅ empêche l’erreur Git (exit 128)

@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pages: write
-      id-token: write
 
     steps:
     - name: Checkout
@@ -31,3 +29,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
         cname: atelier.cboulet.info
+        force_orphan: true  # ✅ empêche l’erreur Git (exit 128)

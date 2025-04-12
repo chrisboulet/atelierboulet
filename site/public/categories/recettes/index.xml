@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Recettes on L&#39;atelier Boulet</title>
+    <link>http://localhost:1313/categories/recettes/</link>
+    <description>Recent content in Recettes on L&#39;atelier Boulet</description>
+    <generator>Hugo -- 0.146.3</generator>
+    <language>fr-ca</language>
+    <lastBuildDate>Sat, 12 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/recettes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nom de la recette</title>
+      <link>http://localhost:1313/posts/recettetest/</link>
+      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/recettetest/</guid>
+      <description>&lt;h2 id=&#34;-accompagnements-suggérés&#34;&gt;🍽️ Accompagnements suggérés&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Légume vert vapeur&lt;/li&gt;
+&lt;li&gt;Riz jasmin ou purée rustique&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-vin-ou-breuvage-approprié&#34;&gt;🍷 Vin ou breuvage approprié&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Vin blanc sec ou bière blonde fruitée&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-ingrédients&#34;&gt;🧾 Ingrédients&lt;/h2&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;ul&gt;
+&lt;li&gt;500 g de veau en cubes&lt;/li&gt;
+&lt;li&gt;1 oignon&lt;/li&gt;
+&lt;li&gt;2 gousses d’ail&lt;/li&gt;
+&lt;li&gt;1 c. à soupe de moutarde&lt;/li&gt;
+&lt;li&gt;150 ml de vin blanc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;ul&gt;
+&lt;li&gt;200 ml de crème 15 %&lt;/li&gt;
+&lt;li&gt;250 g de champignons&lt;/li&gt;
+&lt;li&gt;Sel, poivre&lt;/li&gt;
+&lt;li&gt;Huile d’olive&lt;/li&gt;
+&lt;li&gt;Persil frais (optionnel)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-préparation&#34;&gt;👨‍🍳 Préparation&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Faire revenir la viande dans l’huile chaude.&lt;/li&gt;
+&lt;li&gt;Ajouter oignons, ail et champignons. Cuire 5 minutes.&lt;/li&gt;
+&lt;li&gt;Déglacer avec le vin blanc. Réduire 3 minutes.&lt;/li&gt;
+&lt;li&gt;Ajouter crème et moutarde. Mijoter 20 minutes à feu doux.&lt;/li&gt;
+&lt;li&gt;Rectifier l’assaisonnement et servir chaud.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-astuces&#34;&gt;💡 Astuces&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ajouter un filet de jus de citron pour équilibrer la crème.&lt;/li&gt;
+&lt;li&gt;Excellent avec des pâtes fraîches ou du couscous.&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

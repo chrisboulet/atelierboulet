@@ -1,17 +1,22 @@
-
 baseURL = "https://atelier.cboulet.info/"
 languageCode = "fr-ca"
-title = "L’atelier Boulet"
+title = "L'atelier Boulet"
 theme = "PaperMod"
 
 [params]
-  homeInfoParams = { Title = "Bienvenue à L’atelier Boulet", Content = "Recettes, techno, BBQ, création... tout se passe ici." }
+  homeInfoParams = { Title = "Bienvenue à L'atelier Boulet", Content = "Recettes, techno, BBQ, création... tout se passe ici." }
   ShowReadingTime = true
   ShowPostNavLinks = true
   ShowCodeCopyButtons = true
   logo = "logo-atelierboulet.png"
   favicon = "favicon-64x64.png"
-
+[params.profileMode]
+  enabled = true
+  title = "Bienvenue à L'atelier Boulet"
+  subtitle = "Cuisine et Création"
+  imageUrl = "logo-transparent.png"
+  imageTitle = "L’atelier Boulet"
+  buttons = []
 
 
 [menu]
@@ -26,11 +31,3 @@ theme = "PaperMod"
     name = "Recettes"
     url = "/posts/"
     weight = 2
-    
-  profileMode = true
-  profileModeParams = { 
-    imageUrl = "logo-transparent.png", 
-    imageTitle = "L’atelier Boulet", 
-    subtitle = "Cuisine & Création", 
-    buttons = []
-  }

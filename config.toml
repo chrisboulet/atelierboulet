@@ -1,0 +1,5 @@
+
+baseURL = "https://atelier.cboulet.info/"
+languageCode = "fr-ca"
+title = "L’atelier Boulet"
+theme = "atelier-theme"

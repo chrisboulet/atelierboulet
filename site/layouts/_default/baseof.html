@@ -97,7 +97,7 @@
         });
     </script>
     
-    {{- /* Auth0 Configuration */}}
+    {{- /* Auth0 Configuration for Flutter Web */}}
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
             // Initialisation de Auth0
@@ -107,7 +107,9 @@
                     domain: 'YOUR_AUTH0_DOMAIN',
                     clientId: 'YOUR_AUTH0_CLIENT_ID',
                     authorizationParams: {
-                        redirect_uri: window.location.origin + '/admin/'
+                        redirect_uri: window.location.origin + '/admin/',
+                        audience: 'https://api.github.com/',
+                        scope: 'openid profile email repo'
                     }
                 });
                 
@@ -126,10 +128,18 @@
                     adminLink.addEventListener('click', async function(e) {
                         if (!(await auth0Client.isAuthenticated())) {
                             e.preventDefault();
-                            await auth0Client.loginWithRedirect();
+                            await auth0Client.loginWithRedirect({
+                                authorizationParams: {
+                                    audience: 'https://api.github.com/',
+                                    scope: 'openid profile email repo'
+                                }
+                            });
                         }
                     });
                 }
+                
+                // Exposer l'objet auth0 pour Flutter
+                window.auth0 = auth0Client;
             } catch (e) {
                 console.error("Erreur d'authentification:", e);
             }

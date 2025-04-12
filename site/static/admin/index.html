@@ -31,6 +31,11 @@
     .hidden {
       display: none;
     }
+    .flutter-app {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -43,10 +48,22 @@
   <div id="cms-container" class="hidden">
     <!-- Include the script that builds the page and powers Netlify CMS -->
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    
+    <!-- Configuration for Flutter Web integration -->
+    <script>
+      window.flutterConfiguration = {
+        auth0: {
+          domain: 'YOUR_AUTH0_DOMAIN',
+          clientId: 'YOUR_AUTH0_CLIENT_ID',
+          audience: 'https://api.github.com/',
+          scope: 'openid profile email repo'
+        }
+      };
+    </script>
   </div>
   
   <script>
-    // Personnalisation de l'éditeur
+    // Personnalisation de l'éditeur avec support Flutter
     document.addEventListener('DOMContentLoaded', async function() {
       // Initialisation de Auth0
       let auth0Client = null;
@@ -55,7 +72,9 @@
           domain: 'YOUR_AUTH0_DOMAIN',
           clientId: 'YOUR_AUTH0_CLIENT_ID',
           authorizationParams: {
-            redirect_uri: window.location.origin + '/admin/'
+            redirect_uri: window.location.origin + '/admin/',
+            audience: 'https://api.github.com/',
+            scope: 'openid profile email repo'
           }
         });
         
@@ -71,9 +90,23 @@
           document.getElementById('login-screen').classList.add('hidden');
           document.getElementById('cms-container').classList.remove('hidden');
           
+          // Obtenir le token pour l'API GitHub
+          const token = await auth0Client.getTokenSilently({
+            audience: 'https://api.github.com/',
+            scope: 'repo'
+          });
+          
+          // Stocker le token pour Flutter
+          window.flutterConfiguration.token = token;
+          
           // Configurer le CMS avec Auth0
           if (window.CMS) {
             CMS.registerPreviewStyle("/css/style.min.css");
+            
+            // Ajouter le token au backend GitHub
+            CMS.registerBackend('github', {
+              auth_token: token
+            });
           }
         } else {
           // Afficher l'écran de connexion

@@ -62,8 +62,8 @@
         auth0: {
           domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
           clientId: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
-          audience: 'https://api.github.com/',
-          scope: 'openid profile email repo'
+          // Suppression de l'audience GitHub qui cause l'erreur
+          scope: 'openid profile email'
         }
       };
     </script>
@@ -148,9 +148,9 @@
           domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
           clientID: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
           redirectUri: window.location.origin + '/admin/',
-          audience: 'https://api.github.com/',
+          // Suppression de l'audience GitHub qui cause l'erreur
           responseType: 'code',
-          scope: 'openid profile email repo'
+          scope: 'openid profile email'
         });
         
         logDebug('Client Auth0 classique créé avec succès');
@@ -213,14 +213,13 @@
           const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
           const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
           const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
-          const audience = encodeURIComponent('https://api.github.com/');
-          const scope = encodeURIComponent('openid profile email repo');
+          // Suppression de l'audience GitHub qui cause l'erreur
+          const scope = encodeURIComponent('openid profile email');
           
           const authUrl = `https://${domain}/authorize?` +
             `client_id=${clientId}` +
             `&response_type=code` +
             `&redirect_uri=${redirectUri}` +
-            `&audience=${audience}` +
             `&scope=${scope}`;
           
           logDebug('Redirection vers: ' + authUrl);
@@ -249,9 +248,9 @@
                 domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
                 clientID: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
                 redirectUri: window.location.origin + '/admin/',
-                audience: 'https://api.github.com/',
+                // Suppression de l'audience GitHub qui cause l'erreur
                 responseType: 'code',
-                scope: 'openid profile email repo'
+                scope: 'openid profile email'
               });
               
               logDebug('Client Auth0 classique créé, tentative de connexion...');

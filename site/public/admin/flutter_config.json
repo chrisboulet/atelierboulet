@@ -1,0 +1,103 @@
+{
+  "app_name": "L'atelier Boulet Admin",
+  "auth0": {
+    "domain": "dev-rm12gnk2hvgfnxxc.us.auth0.com",
+    "client_id": "gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr",
+    "audience": "https://api.github.com/",
+    "scope": "openid profile email repo"
+  },
+  "github": {
+    "repo": "chrisboulet/atelierboulet",
+    "branch": "main",
+    "api_endpoint": "https://api.github.com"
+  },
+  "cms": {
+    "media_folder": "site/static/images/uploads",
+    "public_folder": "/images/uploads",
+    "collections": [
+      {
+        "name": "recettes",
+        "label": "Recettes",
+        "folder": "site/content/posts",
+        "create": true,
+        "slug": "{{slug}}",
+        "fields": [
+          {"label": "Titre", "name": "title", "widget": "string"},
+          {"label": "Date", "name": "date", "widget": "datetime"},
+          {"label": "Description", "name": "description", "widget": "text", "required": false},
+          {"label": "Image de couverture", "name": "cover", "widget": "object", "fields": [
+            {"label": "Image", "name": "image", "widget": "image", "required": false},
+            {"label": "Alt", "name": "alt", "widget": "string", "required": false},
+            {"label": "Caption", "name": "caption", "widget": "string", "required": false}
+          ]},
+          {"label": "Catégories", "name": "categories", "widget": "list", "default": ["Recettes"]},
+          {"label": "Tags", "name": "tags", "widget": "list"},
+          {"label": "Types de plat", "name": "types", "widget": "list", "required": false},
+          {"label": "Saisons", "name": "seasons", "widget": "list", "required": false},
+          {"label": "Difficulté", "name": "difficulties", "widget": "list", "required": false},
+          {"label": "Régimes", "name": "diets", "widget": "list", "required": false},
+          {"label": "Durée", "name": "durations", "widget": "list", "required": false},
+          {"label": "Temps de préparation (minutes)", "name": "tempsPreparation", "widget": "number", "required": false},
+          {"label": "Temps de cuisson (minutes)", "name": "tempsCuisson", "widget": "number", "required": false},
+          {"label": "Temps total (minutes)", "name": "tempsTotal", "widget": "number", "required": false},
+          {"label": "Portions", "name": "portions", "widget": "number", "required": false},
+          {"label": "Contenu", "name": "body", "widget": "markdown"}
+        ]
+      },
+      {
+        "name": "astuces",
+        "label": "Astuces",
+        "folder": "site/content/astuces",
+        "create": true,
+        "slug": "{{slug}}",
+        "fields": [
+          {"label": "Titre", "name": "title", "widget": "string"},
+          {"label": "Date", "name": "date", "widget": "datetime"},
+          {"label": "Description", "name": "description", "widget": "text", "required": false},
+          {"label": "Image de couverture", "name": "cover", "widget": "object", "fields": [
+            {"label": "Image", "name": "image", "widget": "image", "required": false},
+            {"label": "Alt", "name": "alt", "widget": "string", "required": false},
+            {"label": "Caption", "name": "caption", "widget": "string", "required": false}
+          ]},
+          {"label": "Catégories", "name": "categories", "widget": "list", "default": ["Astuces"]},
+          {"label": "Tags", "name": "tags", "widget": "list"},
+          {"label": "Contenu", "name": "body", "widget": "markdown"}
+        ]
+      },
+      {
+        "name": "collections",
+        "label": "Collections",
+        "folder": "site/content/collections",
+        "create": true,
+        "slug": "{{slug}}",
+        "fields": [
+          {"label": "Titre", "name": "title", "widget": "string"},
+          {"label": "Date", "name": "date", "widget": "datetime"},
+          {"label": "Description", "name": "description", "widget": "text", "required": false},
+          {"label": "Image de couverture", "name": "cover", "widget": "object", "fields": [
+            {"label": "Image", "name": "image", "widget": "image", "required": false},
+            {"label": "Alt", "name": "alt", "widget": "string", "required": false},
+            {"label": "Caption", "name": "caption", "widget": "string", "required": false}
+          ]},
+          {"label": "Layout", "name": "layout", "widget": "hidden", "default": "single-collection"},
+          {"label": "Recettes associées", "name": "recipes", "widget": "list", "required": false},
+          {"label": "Contenu", "name": "body", "widget": "markdown"}
+        ]
+      }
+    ]
+  },
+  "ui": {
+    "theme": {
+      "primary_color": "#007bff",
+      "secondary_color": "#6c757d",
+      "success_color": "#28a745",
+      "danger_color": "#dc3545",
+      "warning_color": "#ffc107",
+      "info_color": "#17a2b8",
+      "light_color": "#f8f9fa",
+      "dark_color": "#343a40"
+    },
+    "logo": "/logo-atelierboulet.png",
+    "favicon": "/favicon-64x64.png"
+  }
+}

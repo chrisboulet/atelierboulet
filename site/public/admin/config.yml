@@ -1,0 +1,68 @@
+backend:
+  name: github
+  repo: chrisboulet/atelierboulet
+  branch: main
+  base_url: https://YOUR_AUTH0_DOMAINdev-rm12gnk2hvgfnxxc.us.auth0.com
+  auth_endpoint: authorize
+  api_root: https://api.github.com
+  app_id: ''  # Sera rempli dynamiquement par Flutter
+
+# Configuration spécifique à Flutter
+flutter:
+  enabled: true
+  integration_mode: spa
+
+media_folder: "site/static/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "recettes"
+    label: "Recettes"
+    folder: "site/content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Image de couverture", name: "cover", widget: "object", fields: [{label: "Image", name: "image", widget: "image", required: false}, {label: "Alt", name: "alt", widget: "string", required: false}, {label: "Caption", name: "caption", widget: "string", required: false}]}
+      - {label: "Catégories", name: "categories", widget: "list", default: ["Recettes"]}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Types de plat", name: "types", widget: "list", required: false}
+      - {label: "Saisons", name: "seasons", widget: "list", required: false}
+      - {label: "Difficulté", name: "difficulties", widget: "list", required: false}
+      - {label: "Régimes", name: "diets", widget: "list", required: false}
+      - {label: "Durée", name: "durations", widget: "list", required: false}
+      - {label: "Temps de préparation (minutes)", name: "tempsPreparation", widget: "number", required: false}
+      - {label: "Temps de cuisson (minutes)", name: "tempsCuisson", widget: "number", required: false}
+      - {label: "Temps total (minutes)", name: "tempsTotal", widget: "number", required: false}
+      - {label: "Portions", name: "portions", widget: "number", required: false}
+      - {label: "Contenu", name: "body", widget: "markdown"}
+      
+  - name: "astuces"
+    label: "Astuces"
+    folder: "site/content/astuces"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Image de couverture", name: "cover", widget: "object", fields: [{label: "Image", name: "image", widget: "image", required: false}, {label: "Alt", name: "alt", widget: "string", required: false}, {label: "Caption", name: "caption", widget: "string", required: false}]}
+      - {label: "Catégories", name: "categories", widget: "list", default: ["Astuces"]}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Contenu", name: "body", widget: "markdown"}
+      
+  - name: "collections"
+    label: "Collections"
+    folder: "site/content/collections"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Image de couverture", name: "cover", widget: "object", fields: [{label: "Image", name: "image", widget: "image", required: false}, {label: "Alt", name: "alt", widget: "string", required: false}, {label: "Caption", name: "caption", widget: "string", required: false}]}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "single-collection"}
+      - {label: "Recettes associées", name: "recipes", widget: "list", required: false}
+      - {label: "Contenu", name: "body", widget: "markdown"}

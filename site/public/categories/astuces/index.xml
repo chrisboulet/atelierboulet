@@ -1,19 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Astuces on L&#39;atelier Boulet</title>
-    <link>https://atelierboulet.netlify.app/categories/astuces/</link>
-    <description>Recent content in Astuces on L&#39;atelier Boulet</description>
-    <generator>Hugo -- 0.146.3</generator>
-    <language>fr-ca</language>
-    <lastBuildDate>Sat, 12 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://atelierboulet.netlify.app/categories/astuces/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>La cuisson parfaite des viandes</title>
-      <link>https://atelierboulet.netlify.app/astuces/cuisson-parfaite-viande/</link>
-      <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://atelierboulet.netlify.app/astuces/cuisson-parfaite-viande/</guid>
-      <description>Guide complet pour maîtriser la cuisson de différentes viandes et obtenir des résultats parfaits à chaque fois.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Astuces on L'atelier Boulet</title><link>https://atelierboulet.netlify.app/categories/astuces/</link><description>Recent content in Astuces on L'atelier Boulet</description><generator>Hugo -- gohugo.io</generator><language>fr-ca</language><lastBuildDate>Sat, 12 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://atelierboulet.netlify.app/categories/astuces/index.xml" rel="self" type="application/rss+xml"/><item><title>La cuisson parfaite des viandes</title><link>https://atelierboulet.netlify.app/astuces/cuisson-parfaite-viande/</link><pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate><guid>https://atelierboulet.netlify.app/astuces/cuisson-parfaite-viande/</guid><description>Maîtriser la cuisson des viandes La cuisson de la viande est souvent source d&amp;rsquo;anxiété pour de nombreux cuisiniers amateurs. Trop cuite, elle devient sèche; pas assez, elle peut être dangereuse. Voici un guide complet pour vous aider à obtenir des résultats parfaits.
+Les principes fondamentaux 1. La température ambiante Toujours sortir la viande du réfrigérateur au moins 30 minutes avant la cuisson. Une viande à température ambiante cuit plus uniformément.</description></item></channel></rss>

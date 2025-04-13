@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administration | L'atelier Boulet</title>
+  <link rel="icon" type="image/png" href="/favicon-64x64.png" />
+  <!-- Utilisation de la bibliothèque Auth0 classique au lieu de SPA -->
+  <script src="https://cdn.auth0.com/js/auth0/9.19/auth0.min.js"></script>
+  <style>
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .login-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .login-button:hover {
+      background-color: #0056b3;
+    }
+    .hidden {
+      display: none;
+    }
+    .flutter-app {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="login-screen" class="login-container">
+    <h1>Administration L'atelier Boulet</h1>
+    <p>Connectez-vous pour gérer le contenu du site</p>
+    <button id="login-button" class="login-button">Se connecter</button>
+    <div style="margin-top: 20px;">
+      <p>Si le bouton ci-dessus ne fonctionne pas, essayez ces méthodes alternatives:</p>
+      <button id="login-button-alt" class="login-button" style="background-color: #28a745;">Méthode alternative 1</button>
+      <button id="login-button-alt2" class="login-button" style="background-color: #dc3545; margin-top: 10px;">Méthode alternative 2</button>
+    </div>
+    <div id="debug-info" style="margin-top: 20px; padding: 10px; background-color: #f8f9fa; border-radius: 4px; max-width: 80%; text-align: left;"></div>
+  </div>
+  
+  <div id="cms-container" class="hidden">
+    <!-- Include the script that builds the page and powers Netlify CMS -->
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    
+    <!-- Configuration for Flutter Web integration -->
+    <script>
+      window.flutterConfiguration = {
+        auth0: {
+          domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
+          clientId: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
+          // Suppression de l'audience GitHub qui cause l'erreur
+          scope: 'openid profile email'
+        }
+      };
+    </script>
+  </div>
+  
+  <script>
+    // Gestionnaire d'erreur global
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.error('Erreur globale:', message, 'à', source, lineno, colno);
+      console.error('Détails de l\'erreur:', error);
+      return false;
+    };
+    
+    // Personnalisation de l'éditeur avec support Flutter
+    document.addEventListener('DOMContentLoaded', async function() {
+      // Fonction de débogage pour afficher les informations
+      const debugInfo = document.getElementById('debug-info');
+      function logDebug(message) {
+        console.log(message);
+        if (debugInfo) {
+          const timestamp = new Date().toLocaleTimeString();
+          debugInfo.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+        }
+      }
+      
+      logDebug('DOM chargé, initialisation de Auth0...');
+      
+      // Récupérer les boutons de connexion
+      const loginButton = document.getElementById('login-button');
+      const loginButtonAlt = document.getElementById('login-button-alt');
+      const loginButtonAlt2 = document.getElementById('login-button-alt2');
+      
+      if (!loginButton || !loginButtonAlt || !loginButtonAlt2) {
+        logDebug('Erreur: Un ou plusieurs boutons de connexion non trouvés!');
+        return;
+      }
+      
+      logDebug('Boutons de connexion trouvés');
+      
+      // Vérifier si la bibliothèque Auth0 classique est disponible
+      if (typeof auth0 === 'undefined' || typeof auth0.WebAuth !== 'function') {
+        logDebug('La bibliothèque Auth0 classique n\'est pas disponible ou n\'est pas correctement chargée');
+        debugInfo.innerHTML += `
+          <div style="color: red; margin-top: 10px;">
+            <strong>Erreur:</strong> La bibliothèque Auth0 n'est pas disponible.<br>
+            <small>Tentative de chargement...</small>
+          </div>
+        `;
+        
+        // Charger la bibliothèque Auth0 classique
+        const script = document.createElement('script');
+        script.src = 'https://cdn.auth0.com/js/auth0/9.19/auth0.min.js';
+        document.head.appendChild(script);
+        
+        // Attendre que la bibliothèque soit chargée
+        await new Promise((resolve) => {
+          script.onload = resolve;
+          script.onerror = resolve; // Continuer même en cas d'erreur
+        });
+        
+        // Vérifier à nouveau
+        if (typeof auth0 === 'undefined' || typeof auth0.WebAuth !== 'function') {
+          logDebug('Échec du chargement de la bibliothèque Auth0 classique');
+          debugInfo.innerHTML += `
+            <div style="color: red; margin-top: 10px;">
+              <strong>Erreur:</strong> Impossible de charger la bibliothèque Auth0.<br>
+              <small>Veuillez rafraîchir la page ou essayer un autre navigateur.</small>
+            </div>
+          `;
+          return;
+        }
+        
+        logDebug('Bibliothèque Auth0 classique chargée avec succès');
+      }
+      
+      try {
+        // Initialisation du client Auth0 classique
+        logDebug('Initialisation du client Auth0 classique...');
+        
+        // Créer un client Auth0 classique
+        const webAuth = new auth0.WebAuth({
+          domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
+          clientID: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
+          redirectUri: 'https://atelier.cboulet.info/admin/',
+          // Suppression de l'audience GitHub qui cause l'erreur
+          responseType: 'code',
+          scope: 'openid profile email'
+        });
+        
+        logDebug('Client Auth0 classique créé avec succès');
+        
+        // Vérifier si l'utilisateur est redirigé après authentification
+        if (window.location.search.includes("code=")) {
+          logDebug('Code de redirection détecté, traitement du callback...');
+          
+          webAuth.parseHash(function(err, authResult) {
+            if (err) {
+              logDebug('Erreur lors du traitement du callback: ' + err.error);
+              return;
+            }
+            
+            if (authResult && authResult.accessToken) {
+              logDebug('Authentification réussie, token reçu');
+              
+              // Stocker le token
+              localStorage.setItem('auth0_access_token', authResult.accessToken);
+              
+              // Afficher le CMS
+              document.getElementById('login-screen').classList.add('hidden');
+              document.getElementById('cms-container').classList.remove('hidden');
+              
+              // Configurer le CMS avec Auth0
+              if (window.CMS) {
+                logDebug('Configuration du CMS avec Auth0');
+                CMS.registerPreviewStyle("/css/style.min.css");
+                
+                // Ajouter le token au backend GitHub
+                CMS.registerBackend('github', {
+                  auth_token: authResult.accessToken
+                });
+                logDebug('CMS configuré avec succès');
+              } else {
+                logDebug('Erreur: CMS non disponible');
+              }
+            }
+          });
+        }
+        
+        // Configurer les boutons de connexion
+        logDebug('Configuration des boutons de connexion...');
+        
+        // Méthode principale - Auth0 WebAuth
+        loginButton.addEventListener('click', function(e) {
+          logDebug('Bouton de connexion principal cliqué');
+          e.preventDefault();
+          
+          logDebug('Tentative de connexion avec Auth0 WebAuth...');
+          webAuth.authorize();
+        });
+        
+        // Méthode alternative 1
+        loginButtonAlt.addEventListener('click', function(e) {
+          logDebug('Bouton de connexion alternatif 1 cliqué');
+          e.preventDefault();
+          
+          // Redirection directe vers Auth0
+          const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
+          const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
+          const redirectUri = encodeURIComponent('https://atelier.cboulet.info/admin/');
+          // Suppression de l'audience GitHub qui cause l'erreur
+          const scope = encodeURIComponent('openid profile email');
+          
+          const authUrl = `https://${domain}/authorize?` +
+            `client_id=${clientId}` +
+            `&response_type=code` +
+            `&redirect_uri=${redirectUri}` +
+            `&scope=${scope}`;
+          
+          logDebug('Redirection vers: ' + authUrl);
+          window.location.href = authUrl;
+        });
+        
+        // Méthode alternative 2 - Utilisation d'un iframe caché
+        loginButtonAlt2.addEventListener('click', function(e) {
+          logDebug('Bouton de connexion alternatif 2 cliqué');
+          e.preventDefault();
+          
+          // Créer un iframe caché pour la redirection
+          logDebug('Création d\'un iframe pour la redirection Auth0...');
+          
+          // Charger la bibliothèque Auth0 classique
+          const script = document.createElement('script');
+          script.src = 'https://cdn.auth0.com/js/auth0/9.19/auth0.min.js';
+          document.head.appendChild(script);
+          
+          script.onload = function() {
+            logDebug('Bibliothèque Auth0 classique chargée');
+            
+            try {
+              // Créer un client Auth0 classique
+              const webAuth = new auth0.WebAuth({
+                domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
+                clientID: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
+                redirectUri: 'https://atelier.cboulet.info/admin/',
+                // Suppression de l'audience GitHub qui cause l'erreur
+                responseType: 'code',
+                scope: 'openid profile email'
+              });
+              
+              logDebug('Client Auth0 classique créé, tentative de connexion...');
+              
+              // Tentative de connexion
+              webAuth.authorize();
+            } catch (error) {
+              logDebug('Erreur lors de l\'initialisation du client Auth0 classique: ' + error.message);
+              
+              // Fallback à la redirection directe
+              const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
+              const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
+              const redirectUri = encodeURIComponent('https://atelier.cboulet.info/admin/');
+              
+              const authUrl = `https://${domain}/authorize?` +
+                `client_id=${clientId}` +
+                `&response_type=code` +
+                `&redirect_uri=${redirectUri}`;
+              
+              logDebug('Redirection de secours vers: ' + authUrl);
+              window.location.href = authUrl;
+            }
+          };
+          
+          script.onerror = function() {
+            logDebug('Erreur lors du chargement de la bibliothèque Auth0 classique');
+            
+            // Fallback à la redirection directe
+            const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
+            const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
+            const redirectUri = encodeURIComponent('https://atelier.cboulet.info/admin/');
+            
+            const authUrl = `https://${domain}/authorize?` +
+              `client_id=${clientId}` +
+              `&response_type=code` +
+              `&redirect_uri=${redirectUri}`;
+            
+            logDebug('Redirection de secours vers: ' + authUrl);
+            window.location.href = authUrl;
+          };
+        });
+      } catch (e) {
+        logDebug("Erreur d'authentification: " + e.message);
+        // Afficher un message d'erreur plus convivial
+        debugInfo.innerHTML += `
+          <div style="color: red; margin-top: 10px;">
+            <strong>Erreur d'authentification:</strong> ${e.message}<br>
+            <small>Veuillez essayer la méthode alternative ou contacter l'administrateur.</small>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

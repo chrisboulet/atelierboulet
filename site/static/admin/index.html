@@ -5,7 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Administration | L'atelier Boulet</title>
   <link rel="icon" type="image/png" href="/favicon-64x64.png" />
-  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js" integrity="sha384-eQi4e6H3QYEbLEMJkO6KGnZeD7HXXmMO3XFxmrWUVKdKBYZ8pHK+6gUT+JQXpKz3" crossorigin="anonymous"></script>
+  <script>
+    // Vérifier si la bibliothèque Auth0 est chargée
+    window.onload = function() {
+      if (typeof createAuth0Client !== 'function') {
+        console.error('La bibliothèque Auth0 n\'a pas été chargée correctement');
+        const debugInfo = document.getElementById('debug-info');
+        if (debugInfo) {
+          debugInfo.innerHTML += `
+            <div style="color: red; margin-top: 10px;">
+              <strong>Erreur:</strong> La bibliothèque Auth0 n'a pas été chargée correctement.<br>
+              <small>Tentative de chargement alternatif...</small>
+            </div>
+          `;
+          
+          // Tentative de chargement alternatif
+          const script = document.createElement('script');
+          script.src = 'https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js';
+          script.onload = function() {
+            debugInfo.innerHTML += `
+              <div style="color: green; margin-top: 10px;">
+                <strong>Succès:</strong> Bibliothèque Auth0 chargée avec succès.<br>
+                <small>Veuillez rafraîchir la page.</small>
+              </div>
+            `;
+          };
+          script.onerror = function() {
+            debugInfo.innerHTML += `
+              <div style="color: red; margin-top: 10px;">
+                <strong>Erreur:</strong> Impossible de charger la bibliothèque Auth0.<br>
+                <small>Veuillez vérifier votre connexion internet ou contacter l'administrateur.</small>
+              </div>
+            `;
+          };
+          document.head.appendChild(script);
+        }
+      }
+    };
+  </script>
   <style>
     .login-container {
       display: flex;
@@ -44,8 +82,9 @@
     <p>Connectez-vous pour gérer le contenu du site</p>
     <button id="login-button" class="login-button">Se connecter</button>
     <div style="margin-top: 20px;">
-      <p>Si le bouton ci-dessus ne fonctionne pas, essayez cette méthode alternative:</p>
-      <button id="login-button-alt" class="login-button" style="background-color: #28a745;">Méthode alternative</button>
+      <p>Si le bouton ci-dessus ne fonctionne pas, essayez ces méthodes alternatives:</p>
+      <button id="login-button-alt" class="login-button" style="background-color: #28a745;">Méthode alternative 1</button>
+      <button id="login-button-alt2" class="login-button" style="background-color: #dc3545; margin-top: 10px;">Méthode alternative 2</button>
     </div>
     <div id="debug-info" style="margin-top: 20px; padding: 10px; background-color: #f8f9fa; border-radius: 4px; max-width: 80%; text-align: left;"></div>
   </div>
@@ -92,18 +131,46 @@
       // Récupérer les boutons de connexion
       const loginButton = document.getElementById('login-button');
       const loginButtonAlt = document.getElementById('login-button-alt');
+      const loginButtonAlt2 = document.getElementById('login-button-alt2');
       
-      if (!loginButton || !loginButtonAlt) {
+      if (!loginButton || !loginButtonAlt || !loginButtonAlt2) {
         logDebug('Erreur: Un ou plusieurs boutons de connexion non trouvés!');
         return;
       }
       
       logDebug('Boutons de connexion trouvés');
       
+      // Vérifier si la fonction createAuth0Client existe
+      if (typeof createAuth0Client !== 'function') {
+        logDebug('La fonction createAuth0Client n\'est pas disponible, chargement de la bibliothèque Auth0...');
+        
+        // Charger la bibliothèque Auth0 manuellement
+        const script = document.createElement('script');
+        script.src = 'https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js';
+        document.head.appendChild(script);
+        
+        // Attendre que la bibliothèque soit chargée
+        await new Promise((resolve, reject) => {
+          script.onload = resolve;
+          script.onerror = reject;
+        }).catch(error => {
+          logDebug('Erreur lors du chargement de la bibliothèque Auth0: ' + error);
+          throw new Error('Impossible de charger la bibliothèque Auth0');
+        });
+        
+        logDebug('Bibliothèque Auth0 chargée avec succès');
+      }
+      
       // Initialisation de Auth0
       let auth0Client = null;
       try {
         logDebug('Tentative de création du client Auth0...');
+        
+        // Vérifier à nouveau si la fonction est disponible
+        if (typeof createAuth0Client !== 'function') {
+          throw new Error('La fonction createAuth0Client n\'est toujours pas disponible après le chargement de la bibliothèque');
+        }
+        
         auth0Client = await createAuth0Client({
           domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
           clientId: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
@@ -180,9 +247,9 @@
             }
           });
           
-          // Méthode alternative
+          // Méthode alternative 1
           loginButtonAlt.addEventListener('click', function(e) {
-            logDebug('Bouton de connexion alternatif cliqué');
+            logDebug('Bouton de connexion alternatif 1 cliqué');
             e.preventDefault();
             
             // Redirection directe vers Auth0
@@ -201,6 +268,73 @@
             
             logDebug('Redirection vers: ' + authUrl);
             window.location.href = authUrl;
+          });
+          
+          // Méthode alternative 2 - Utilisation d'un iframe caché
+          loginButtonAlt2.addEventListener('click', function(e) {
+            logDebug('Bouton de connexion alternatif 2 cliqué');
+            e.preventDefault();
+            
+            // Créer un iframe caché pour la redirection
+            logDebug('Création d\'un iframe pour la redirection Auth0...');
+            
+            // Charger la bibliothèque Auth0 classique
+            const script = document.createElement('script');
+            script.src = 'https://cdn.auth0.com/js/auth0/9.19/auth0.min.js';
+            document.head.appendChild(script);
+            
+            script.onload = function() {
+              logDebug('Bibliothèque Auth0 classique chargée');
+              
+              try {
+                // Créer un client Auth0 classique
+                const webAuth = new auth0.WebAuth({
+                  domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
+                  clientID: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
+                  redirectUri: window.location.origin + '/admin/',
+                  audience: 'https://api.github.com/',
+                  responseType: 'code',
+                  scope: 'openid profile email repo'
+                });
+                
+                logDebug('Client Auth0 classique créé, tentative de connexion...');
+                
+                // Tentative de connexion
+                webAuth.authorize();
+              } catch (error) {
+                logDebug('Erreur lors de l\'initialisation du client Auth0 classique: ' + error.message);
+                
+                // Fallback à la redirection directe
+                const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
+                const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
+                const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
+                
+                const authUrl = `https://${domain}/authorize?` +
+                  `client_id=${clientId}` +
+                  `&response_type=code` +
+                  `&redirect_uri=${redirectUri}`;
+                
+                logDebug('Redirection de secours vers: ' + authUrl);
+                window.location.href = authUrl;
+              }
+            };
+            
+            script.onerror = function() {
+              logDebug('Erreur lors du chargement de la bibliothèque Auth0 classique');
+              
+              // Fallback à la redirection directe
+              const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
+              const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
+              const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
+              
+              const authUrl = `https://${domain}/authorize?` +
+                `client_id=${clientId}` +
+                `&response_type=code` +
+                `&redirect_uri=${redirectUri}`;
+              
+              logDebug('Redirection de secours vers: ' + authUrl);
+              window.location.href = authUrl;
+            };
           });
         }
       } catch (e) {

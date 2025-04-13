@@ -5,45 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Administration | L'atelier Boulet</title>
   <link rel="icon" type="image/png" href="/favicon-64x64.png" />
-  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js" integrity="sha384-eQi4e6H3QYEbLEMJkO6KGnZeD7HXXmMO3XFxmrWUVKdKBYZ8pHK+6gUT+JQXpKz3" crossorigin="anonymous"></script>
-  <script>
-    // Vérifier si la bibliothèque Auth0 est chargée
-    window.onload = function() {
-      if (typeof createAuth0Client !== 'function') {
-        console.error('La bibliothèque Auth0 n\'a pas été chargée correctement');
-        const debugInfo = document.getElementById('debug-info');
-        if (debugInfo) {
-          debugInfo.innerHTML += `
-            <div style="color: red; margin-top: 10px;">
-              <strong>Erreur:</strong> La bibliothèque Auth0 n'a pas été chargée correctement.<br>
-              <small>Tentative de chargement alternatif...</small>
-            </div>
-          `;
-          
-          // Tentative de chargement alternatif
-          const script = document.createElement('script');
-          script.src = 'https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js';
-          script.onload = function() {
-            debugInfo.innerHTML += `
-              <div style="color: green; margin-top: 10px;">
-                <strong>Succès:</strong> Bibliothèque Auth0 chargée avec succès.<br>
-                <small>Veuillez rafraîchir la page.</small>
-              </div>
-            `;
-          };
-          script.onerror = function() {
-            debugInfo.innerHTML += `
-              <div style="color: red; margin-top: 10px;">
-                <strong>Erreur:</strong> Impossible de charger la bibliothèque Auth0.<br>
-                <small>Veuillez vérifier votre connexion internet ou contacter l'administrateur.</small>
-              </div>
-            `;
-          };
-          document.head.appendChild(script);
-        }
-      }
-    };
-  </script>
+  <!-- Utilisation de la bibliothèque Auth0 classique au lieu de SPA -->
+  <script src="https://cdn.auth0.com/js/auth0/9.19/auth0.min.js"></script>
   <style>
     .login-container {
       display: flex;
@@ -140,187 +103,163 @@
       
       logDebug('Boutons de connexion trouvés');
       
-      // Vérifier si la fonction createAuth0Client existe
-      if (typeof createAuth0Client !== 'function') {
-        logDebug('La fonction createAuth0Client n\'est pas disponible, chargement de la bibliothèque Auth0...');
+      // Vérifier si la bibliothèque Auth0 classique est disponible
+      if (typeof auth0 === 'undefined' || typeof auth0.WebAuth !== 'function') {
+        logDebug('La bibliothèque Auth0 classique n\'est pas disponible ou n\'est pas correctement chargée');
+        debugInfo.innerHTML += `
+          <div style="color: red; margin-top: 10px;">
+            <strong>Erreur:</strong> La bibliothèque Auth0 n'est pas disponible.<br>
+            <small>Tentative de chargement...</small>
+          </div>
+        `;
         
-        // Charger la bibliothèque Auth0 manuellement
+        // Charger la bibliothèque Auth0 classique
         const script = document.createElement('script');
-        script.src = 'https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js';
+        script.src = 'https://cdn.auth0.com/js/auth0/9.19/auth0.min.js';
         document.head.appendChild(script);
         
         // Attendre que la bibliothèque soit chargée
-        await new Promise((resolve, reject) => {
+        await new Promise((resolve) => {
           script.onload = resolve;
-          script.onerror = reject;
-        }).catch(error => {
-          logDebug('Erreur lors du chargement de la bibliothèque Auth0: ' + error);
-          throw new Error('Impossible de charger la bibliothèque Auth0');
+          script.onerror = resolve; // Continuer même en cas d'erreur
         });
         
-        logDebug('Bibliothèque Auth0 chargée avec succès');
-      }
-      
-      // Initialisation de Auth0
-      let auth0Client = null;
-      try {
-        logDebug('Tentative de création du client Auth0...');
-        
-        // Vérifier à nouveau si la fonction est disponible
-        if (typeof createAuth0Client !== 'function') {
-          throw new Error('La fonction createAuth0Client n\'est toujours pas disponible après le chargement de la bibliothèque');
+        // Vérifier à nouveau
+        if (typeof auth0 === 'undefined' || typeof auth0.WebAuth !== 'function') {
+          logDebug('Échec du chargement de la bibliothèque Auth0 classique');
+          debugInfo.innerHTML += `
+            <div style="color: red; margin-top: 10px;">
+              <strong>Erreur:</strong> Impossible de charger la bibliothèque Auth0.<br>
+              <small>Veuillez rafraîchir la page ou essayer un autre navigateur.</small>
+            </div>
+          `;
+          return;
         }
         
-        auth0Client = await createAuth0Client({
+        logDebug('Bibliothèque Auth0 classique chargée avec succès');
+      }
+      
+      try {
+        // Initialisation du client Auth0 classique
+        logDebug('Initialisation du client Auth0 classique...');
+        
+        // Créer un client Auth0 classique
+        const webAuth = new auth0.WebAuth({
           domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
-          clientId: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
-          authorizationParams: {
-            redirect_uri: window.location.origin + '/admin/',
-            audience: 'https://api.github.com/',
-            scope: 'openid profile email repo'
-          }
+          clientID: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
+          redirectUri: window.location.origin + '/admin/',
+          audience: 'https://api.github.com/',
+          responseType: 'code',
+          scope: 'openid profile email repo'
         });
-        logDebug('Client Auth0 créé avec succès');
+        
+        logDebug('Client Auth0 classique créé avec succès');
         
         // Vérifier si l'utilisateur est redirigé après authentification
         if (window.location.search.includes("code=")) {
           logDebug('Code de redirection détecté, traitement du callback...');
-          await auth0Client.handleRedirectCallback();
-          window.history.replaceState({}, document.title, window.location.pathname);
-          logDebug('Callback traité avec succès');
-        }
-        
-        // Vérifier si l'utilisateur est authentifié
-        const isAuthenticated = await auth0Client.isAuthenticated();
-        logDebug('Statut d\'authentification: ' + (isAuthenticated ? 'Authentifié' : 'Non authentifié'));
-        
-        if (isAuthenticated) {
-          // Afficher le CMS
-          logDebug('Utilisateur authentifié, affichage du CMS');
-          document.getElementById('login-screen').classList.add('hidden');
-          document.getElementById('cms-container').classList.remove('hidden');
           
-          // Obtenir le token pour l'API GitHub
-          logDebug('Récupération du token GitHub...');
-          const token = await auth0Client.getTokenSilently({
-            audience: 'https://api.github.com/',
-            scope: 'repo'
-          });
-          logDebug('Token GitHub récupéré avec succès');
-          
-          // Stocker le token pour Flutter
-          window.flutterConfiguration.token = token;
-          
-          // Configurer le CMS avec Auth0
-          if (window.CMS) {
-            logDebug('Configuration du CMS avec Auth0');
-            CMS.registerPreviewStyle("/css/style.min.css");
+          webAuth.parseHash(function(err, authResult) {
+            if (err) {
+              logDebug('Erreur lors du traitement du callback: ' + err.error);
+              return;
+            }
             
-            // Ajouter le token au backend GitHub
-            CMS.registerBackend('github', {
-              auth_token: token
-            });
-            logDebug('CMS configuré avec succès');
-          } else {
-            logDebug('Erreur: CMS non disponible');
-          }
-        } else {
-          // Afficher l'écran de connexion
-          logDebug('Utilisateur non authentifié, ajout des gestionnaires de connexion');
-          
-          // Méthode principale
-          loginButton.addEventListener('click', async function(e) {
-            logDebug('Bouton de connexion principal cliqué');
-            try {
-              e.preventDefault();
-              logDebug('Tentative de redirection Auth0...');
-              await auth0Client.loginWithRedirect({
-                authorizationParams: {
-                  redirect_uri: window.location.origin + '/admin/',
-                  audience: 'https://api.github.com/',
-                  scope: 'openid profile email repo'
-                }
-              });
-              logDebug('Après loginWithRedirect (cette ligne ne devrait pas s\'afficher)');
-            } catch (error) {
-              logDebug('Erreur lors de la redirection: ' + error.message);
+            if (authResult && authResult.accessToken) {
+              logDebug('Authentification réussie, token reçu');
+              
+              // Stocker le token
+              localStorage.setItem('auth0_access_token', authResult.accessToken);
+              
+              // Afficher le CMS
+              document.getElementById('login-screen').classList.add('hidden');
+              document.getElementById('cms-container').classList.remove('hidden');
+              
+              // Configurer le CMS avec Auth0
+              if (window.CMS) {
+                logDebug('Configuration du CMS avec Auth0');
+                CMS.registerPreviewStyle("/css/style.min.css");
+                
+                // Ajouter le token au backend GitHub
+                CMS.registerBackend('github', {
+                  auth_token: authResult.accessToken
+                });
+                logDebug('CMS configuré avec succès');
+              } else {
+                logDebug('Erreur: CMS non disponible');
+              }
             }
           });
+        }
+        
+        // Configurer les boutons de connexion
+        logDebug('Configuration des boutons de connexion...');
+        
+        // Méthode principale - Auth0 WebAuth
+        loginButton.addEventListener('click', function(e) {
+          logDebug('Bouton de connexion principal cliqué');
+          e.preventDefault();
           
-          // Méthode alternative 1
-          loginButtonAlt.addEventListener('click', function(e) {
-            logDebug('Bouton de connexion alternatif 1 cliqué');
-            e.preventDefault();
-            
-            // Redirection directe vers Auth0
-            const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
-            const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
-            const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
-            const audience = encodeURIComponent('https://api.github.com/');
-            const scope = encodeURIComponent('openid profile email repo');
-            
-            const authUrl = `https://${domain}/authorize?` +
-              `client_id=${clientId}` +
-              `&response_type=code` +
-              `&redirect_uri=${redirectUri}` +
-              `&audience=${audience}` +
-              `&scope=${scope}`;
-            
-            logDebug('Redirection vers: ' + authUrl);
-            window.location.href = authUrl;
-          });
+          logDebug('Tentative de connexion avec Auth0 WebAuth...');
+          webAuth.authorize();
+        });
+        
+        // Méthode alternative 1
+        loginButtonAlt.addEventListener('click', function(e) {
+          logDebug('Bouton de connexion alternatif 1 cliqué');
+          e.preventDefault();
           
-          // Méthode alternative 2 - Utilisation d'un iframe caché
-          loginButtonAlt2.addEventListener('click', function(e) {
-            logDebug('Bouton de connexion alternatif 2 cliqué');
-            e.preventDefault();
+          // Redirection directe vers Auth0
+          const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
+          const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
+          const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
+          const audience = encodeURIComponent('https://api.github.com/');
+          const scope = encodeURIComponent('openid profile email repo');
+          
+          const authUrl = `https://${domain}/authorize?` +
+            `client_id=${clientId}` +
+            `&response_type=code` +
+            `&redirect_uri=${redirectUri}` +
+            `&audience=${audience}` +
+            `&scope=${scope}`;
+          
+          logDebug('Redirection vers: ' + authUrl);
+          window.location.href = authUrl;
+        });
+        
+        // Méthode alternative 2 - Utilisation d'un iframe caché
+        loginButtonAlt2.addEventListener('click', function(e) {
+          logDebug('Bouton de connexion alternatif 2 cliqué');
+          e.preventDefault();
+          
+          // Créer un iframe caché pour la redirection
+          logDebug('Création d\'un iframe pour la redirection Auth0...');
+          
+          // Charger la bibliothèque Auth0 classique
+          const script = document.createElement('script');
+          script.src = 'https://cdn.auth0.com/js/auth0/9.19/auth0.min.js';
+          document.head.appendChild(script);
+          
+          script.onload = function() {
+            logDebug('Bibliothèque Auth0 classique chargée');
             
-            // Créer un iframe caché pour la redirection
-            logDebug('Création d\'un iframe pour la redirection Auth0...');
-            
-            // Charger la bibliothèque Auth0 classique
-            const script = document.createElement('script');
-            script.src = 'https://cdn.auth0.com/js/auth0/9.19/auth0.min.js';
-            document.head.appendChild(script);
-            
-            script.onload = function() {
-              logDebug('Bibliothèque Auth0 classique chargée');
+            try {
+              // Créer un client Auth0 classique
+              const webAuth = new auth0.WebAuth({
+                domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
+                clientID: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
+                redirectUri: window.location.origin + '/admin/',
+                audience: 'https://api.github.com/',
+                responseType: 'code',
+                scope: 'openid profile email repo'
+              });
               
-              try {
-                // Créer un client Auth0 classique
-                const webAuth = new auth0.WebAuth({
-                  domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
-                  clientID: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
-                  redirectUri: window.location.origin + '/admin/',
-                  audience: 'https://api.github.com/',
-                  responseType: 'code',
-                  scope: 'openid profile email repo'
-                });
-                
-                logDebug('Client Auth0 classique créé, tentative de connexion...');
-                
-                // Tentative de connexion
-                webAuth.authorize();
-              } catch (error) {
-                logDebug('Erreur lors de l\'initialisation du client Auth0 classique: ' + error.message);
-                
-                // Fallback à la redirection directe
-                const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
-                const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
-                const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
-                
-                const authUrl = `https://${domain}/authorize?` +
-                  `client_id=${clientId}` +
-                  `&response_type=code` +
-                  `&redirect_uri=${redirectUri}`;
-                
-                logDebug('Redirection de secours vers: ' + authUrl);
-                window.location.href = authUrl;
-              }
-            };
-            
-            script.onerror = function() {
-              logDebug('Erreur lors du chargement de la bibliothèque Auth0 classique');
+              logDebug('Client Auth0 classique créé, tentative de connexion...');
+              
+              // Tentative de connexion
+              webAuth.authorize();
+            } catch (error) {
+              logDebug('Erreur lors de l\'initialisation du client Auth0 classique: ' + error.message);
               
               // Fallback à la redirection directe
               const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
@@ -334,9 +273,26 @@
               
               logDebug('Redirection de secours vers: ' + authUrl);
               window.location.href = authUrl;
-            };
-          });
-        }
+            }
+          };
+          
+          script.onerror = function() {
+            logDebug('Erreur lors du chargement de la bibliothèque Auth0 classique');
+            
+            // Fallback à la redirection directe
+            const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
+            const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
+            const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
+            
+            const authUrl = `https://${domain}/authorize?` +
+              `client_id=${clientId}` +
+              `&response_type=code` +
+              `&redirect_uri=${redirectUri}`;
+            
+            logDebug('Redirection de secours vers: ' + authUrl);
+            window.location.href = authUrl;
+          };
+        });
       } catch (e) {
         logDebug("Erreur d'authentification: " + e.message);
         // Afficher un message d'erreur plus convivial

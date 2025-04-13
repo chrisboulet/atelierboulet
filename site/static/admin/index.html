@@ -147,7 +147,7 @@
         const webAuth = new auth0.WebAuth({
           domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
           clientID: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
-          redirectUri: window.location.origin + '/admin/',
+          redirectUri: 'https://atelier.cboulet.info/admin/',
           // Suppression de l'audience GitHub qui cause l'erreur
           responseType: 'code',
           scope: 'openid profile email'
@@ -212,7 +212,7 @@
           // Redirection directe vers Auth0
           const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
           const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
-          const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
+          const redirectUri = encodeURIComponent('https://atelier.cboulet.info/admin/');
           // Suppression de l'audience GitHub qui cause l'erreur
           const scope = encodeURIComponent('openid profile email');
           
@@ -247,7 +247,7 @@
               const webAuth = new auth0.WebAuth({
                 domain: 'dev-rm12gnk2hvgfnxxc.us.auth0.com',
                 clientID: 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr',
-                redirectUri: window.location.origin + '/admin/',
+                redirectUri: 'https://atelier.cboulet.info/admin/',
                 // Suppression de l'audience GitHub qui cause l'erreur
                 responseType: 'code',
                 scope: 'openid profile email'
@@ -263,7 +263,7 @@
               // Fallback à la redirection directe
               const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
               const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
-              const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
+              const redirectUri = encodeURIComponent('https://atelier.cboulet.info/admin/');
               
               const authUrl = `https://${domain}/authorize?` +
                 `client_id=${clientId}` +
@@ -281,7 +281,7 @@
             // Fallback à la redirection directe
             const domain = 'dev-rm12gnk2hvgfnxxc.us.auth0.com';
             const clientId = 'gTLyTPkaa4GuwesfgwS8PvHh7WzZhEGr';
-            const redirectUri = encodeURIComponent(window.location.origin + '/admin/');
+            const redirectUri = encodeURIComponent('https://atelier.cboulet.info/admin/');
             
             const authUrl = `https://${domain}/authorize?` +
               `client_id=${clientId}` +

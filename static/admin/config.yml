@@ -2,6 +2,7 @@ backend:
   name: github
   repo: chrisboulet/atelierboulet
   branch: main
+  auth_type: pkce-code
 
 media_folder: "static/images"
 public_folder: "/images"

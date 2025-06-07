@@ -1,0 +1,31 @@
+backend:
+  name: github
+  repo: chrisboulet/atelierboulet
+  branch: main
+
+media_folder: "static/images"
+public_folder: "/images"
+
+collections:
+  - name: "posts"
+    label: "Recettes"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD"}
+      - {label: "Tags", name: "tags", widget: "list", allow_add: true}
+      - {label: "Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Description", name: "description", widget: "text", required: false}
+      - {label: "Contenu", name: "body", widget: "markdown"}
+  
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Page d'accueil"
+        name: "home"
+        file: "content/_index.md"
+        fields:
+          - {label: "Titre", name: "title", widget: "string"}
+          - {label: "Contenu", name: "body", widget: "markdown"}

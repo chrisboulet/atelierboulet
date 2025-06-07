@@ -2,4 +2,23 @@
 baseURL = "https://atelier.cboulet.info/"
 languageCode = "fr-ca"
 title = "L’atelier Boulet"
-theme = "atelier-theme"
+theme = "PaperMod"
+
+[params]
+  homeInfoParams = { Title = "Bienvenue à L’atelier Boulet", Content = "Recettes, techno, BBQ, création... tout se passe ici." }
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+
+[menu]
+  [[menu.main]]
+    identifier = "accueil"
+    name = "Accueil"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "recettes"
+    name = "Recettes"
+    url = "/posts/"
+    weight = 2
